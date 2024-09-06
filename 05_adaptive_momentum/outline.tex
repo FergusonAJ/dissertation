@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% OUTLINE %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Notes
+    % Have not even mentioned epistasis in results/discusson
+
+
+% Intro
+    % Genetic potentiation
+        % Historical contingency plays a huge role in evolution
+        % One aspect is how the accumulated genetic background influences further evolution
+        % This has been referred to as genetic potentiation
+            % Can be short-term or long-term
+                % Shortest term is just epistasis
+    % Analytic replay experiments
+        % Analtyic replays are used to study the role of historical contingency in the evolution of a particular population
+        % We usually look at this in terms of genetic potentiation
+            % The genetic background changes in a way that promotes the evolution of the behavior we care about
+    % Adaptive momentum
+        % Selection pressure is lowered on the leading edge during a selective sweep
+        % This allows us to cross valleys
+        % This can be on the same trait or a different trait
+% Methods
+    % Evolution system
+        % Fitness landscape
+            % Extremeley simple sawtooth environment
+                % Name the peaks so we can refer to them later
+        % Population structure
+        % Roulette selection
+        % Mutation rate
+    % Experimental design
+        % Phase 1 - Validating our experiment
+            % Experiment 1 - Can valleys be crossed?
+            % Experiment 2 - Disequilibrium verification
+        % Phase 2 - Benchmarking
+            % Experiment 3 - Basic benchmarking
+            % Experiment 4 - Shuffled benchmarking
+            % (?) Experiment 5 - No disequilibrium benchmarking
+        % Phase 3 - Replays
+            % Experiment 6 - Standard replays
+                % We did replays via population snapshots
+                % Every 4 updates
+            % Experiment 7 - Shuffled replays
+                % Take that snapshot and shuffle it each time
+    % Data and software availability
+% Results
+    % Experiment 1 - Can valleys be crossed?
+        % Valleys can be crossed
+            % We see that double crossing are more common than expected
+                % These almost always occur very early on
+    % Experiment 2 - Disequilibrium experiment
+        % We see that disequilibrium is vital
+    % Experiments 3 - Normal benchmarking
+        % We see that we lose potential as the sweep progresses
+            % Unless
+    % Experiment 4 - Shuffled benchmarking
+        % We see that potential falls much faster here
+    % Experiment 6 - Standard replays
+        % We see that potentiation jumps occasionally, and typically aligns to our benchmarking expectations
+        % This includes for the second crossing
+    % Experiment 7 - Shuffled replays
+        % This destroys the potentiation, typically
+
+% Discussion
+    % The relaxed selection caused by disequilibrium (i.e., adaptive momentum) can drastically alter a population's fate
+        % If we're not in a momentum window, crossing is pure chance
+            % In replicates that did not cross, maximum potentiation was 0.7%
+            % In replicates that did cross, potentiation rapidly increased from ~0% to 100%
+        % This is especially true at the leading edge of a spatial population. 
+            % Here we see that the, at least early in the valley, the leading edge is an excellent predictor of the potential to cross
+            % This is not to say that a leading edge is required
+                % i.e., the original paper supports well-mixed adaptive momentum
+        
+
+    % Population construction/order/structure/etc. affects potentiation
+        % Previously, only genetic potentiation had been studied
+        % Here we clearly demonstrate that *where* the genotypes are in the population can matter significantly
+        % Shuffling the population effectively destroys any potentiation
+
+% Conclusion
+        
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% OLD OUTLINE %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Intro
+    % Adaptive momentum
+        % An adaptation in one trait temporarily lowers selection on other traits during the selective sweep
+            % This can allow other traits to cross valleys
+    % Potentiation via epistatic interactions
+        % Previous work has shown that small, seemingly insignificant mutations can make a world of difference in the long term
+            % e.g., a neutral mutation that has an epistatic interaction with another site that cascades into a full blow behvaior change
+% Methods
+    % Experiment setup
+        % Extremely simple sawtooth environment
+        % Two types of environments
+            % Fixed environment: We initiate N momentum windows
+            % Stochastic environment: Number of momentum windows can vary
+                % Easy
+                % Hard
+        % Two selection schemes
+            % Elite
+                % Easiest to analyze
+            % Roulette  (fitness-proportional)
+                % More realistic
+    % Data and software availability
+        % Repo here: xxx
+
+% Results
+    % 
+
+% Discussion
+    
+% Conclusion

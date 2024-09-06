@@ -1,0 +1,196 @@
+\section{Proposed work}
+
+Since this work builds directly off of Chapter \ref{chap:alife_submission}, I will use the same study system with minor refinements to the protocol.
+Here I elaborate on the aims of the work, discuss the protocol modifications used, and identify additional analyses and statistics to be performed. 
+
+%\subsection{Aims, analyses, and expectations}
+
+%While proposals are often stronger when they contain concrete, testable hypotheses, the exploratory nature of this proposal does not lend itself to that format. 
+%Instead, here I focus on the measures to be collected and some expectations of their values. 
+The overarching goals of this work are threefold.
+First, I plan to further demonstrate the power and flexibility of this experimental design for making lineage-based replay experiments tractable.
+Second, I will collect more extensive quantitative baseline data for future studies to compare against (Chapters \ref{chap:simplified_model} and \ref{chap:varying_environments}).
+Third, I will explore these data from a more qualitative perspective to refine my ideas for theoretical and conceptual models that I propose to build in Chapter \ref{chap:simplified_model}. 
+
+\subsection{Changes to replay experiments}
+
+As in Chapter \ref{chap:alife_submission}, here I will conduct analytic replay experiments on lineages that evolved associative learning. 
+The difference is that this work will take place at a greater scale, which will, ideally, allow me to identify trends and collect statistics on the potentiation measures. 
+To do this, I will expand from an analysis of four lineages to an analysis of fifty lineages. 
+
+% TODO: break up this massive paragraph
+
+I will employ the same two replay phases, with slight modifications.
+%Rather than the first phase requiring a uniform exploratory sweep over the entirety of the early lineage, I will initially limit it to a likely period of time before associative learning first evolved.
+For the exploratory phase, I will no longer sweep the entire early portion of the lineage. 
+Instead, I will initially limit the exploration to the section of the lineage just before associative learning evolved.
+In the four study lineages from the previous chapter, I observed that the largest single-step increase in potentiation was always within 100 phylogenetic steps of the first discovery of associative learning.
+As such, I will refine the protocol to start the exploratory phase only 200 steps before associative learning appeared, rather than at the start of the lineage. %(with restarts 200 back, 150 back, 100 back, and 50 back). %the entire lineage.
+This will require only four exploratory replays (50, 100, 150, and 200 steps before learning appeared). 
+If the potentiation at the earliest replay is already above 20\%, I will extend the  exploratory phase for another 200 steps back (continuing to extend in the unlikely event this is needed).
+
+The targeted replays will be selected and progress as before, replaying every genotype in the window with the largest increase in potentiation.
+I will also formalize the instances where two neighboring windows are both used in the targeted replays by including windows with a potentiation change within 10 percentage points of the maximal window.
+These changes should still identify the same potentiation windows as before, while saving substantial computational resources and thus allowing us to include more experimental replicates.
+Not only am I running fewer replay replicates per lineage, but the replays I do conduct start later along the lineage, requiring fewer updates to reach the 250,000 total updates. 
+The tradeoff here, however, is that the larger number of replicates will make it infeasible for every lineage to be hand-analyzed to qualitatively describe the influence of potentiating mutations.
+As such, my analyses will be mostly quantitative and I will only hand-inspect potentiating mutations in exceptional cases. 
+
+% TODO: describe replays of "unsuccessful" lineages here?
+In addition to the replays of fifty lineages that evolved associative learning, I will also replay ten lineages that did \textit{not} evolve associative learning. 
+Specifically, I will replay five lineages that evolved error correction and five that evolved bet-hedged learning. 
+This set of replays will be too small for full comparisons, but any insight they provide will be invaluable for future work (Chapter \ref{chap:simplified_model}). 
+While learning did not evolve, it is possible that the potentiation for learning did increase. 
+Is this potentiation different than potentiation in a successful lineage? 
+It should be noted that there is no learning in these lineages, and as such exploratory replays cannot be based on that point. 
+Instead, I will revert back to the methodology of Chapter \ref{chap:alife_submission} for these explorations, performing a uniform sweep across the lineage. 
+The targeted replays will focus on windows of potentiation \textit{loss} instead of potentiation gain, but will otherwise function identically. 
+
+\subsection{Changes to associative learning task}
+
+Chapter \ref{chap:alife_submission} guaranteed that organisms would see a left turn before a right turn. 
+This was accomplished using the ``one-fixed turn'' maps from \citep{pontesEvolutionaryOriginAssociative2020}. 
+In the time since, exploratory runs have seen associative learning evolve on purely random paths, with no guarantee of turn order or, indeed, no set path starts at all. 
+This is the first time this has been demonstrated in Avida, as associative learning never arose in ``random start'' paths previously \citep{pontesEvolutionaryOriginAssociative2020}. 
+I propose to switch to these truly random paths, which much more cleanly demonstrate associative learning. 
+This change \textit{requires} trial and error for a genotype to successfully learn arbitrary paths, while other strategies were possible for experiments with set paths. 
+
+While this change to random paths strengthens the type of associative learning that evolves, it comes at a cost. 
+Chapter \ref{chap:alife_submission} saw 8\% of replicates evolve associative learning. 
+The exploratory runs that saw associative learning evolve on random paths saw it evolve in only 1 to 2\% of replicates. 
+This decrease in frequency means that more initial replicates are needed to collect a suitable number of learning lineages, however there is no difference in the replays conducted once those lineages have been identified. 
+As such, this will require more computational resources up front, but since the majority of resources go into the replays themselves, I argue this is a reasonable tradeoff. 
+
+% Mention (briefly) that I'm switching to 2^x from 1.25^x
+While the organism score calculations will not change from Chapter \ref{chap:alife_submission}, how the score is used will change slightly. 
+Chapter\ref{chap:alife_submission} calculated the fitness of an organism as $1.25^{\text{score}}$, but here I will switch to $2^{\text{score}}$, meaning every additional correct movement always doubles fitness. 
+This is the standard rate in Avida, and exploratory runs have shown that this change increases the percentage of replicates that evolve associative learning in the random path environment described above. 
+
+\subsection{Potentiation measures}
+\label{sub:potentiation_measures}
+
+This work aims to collect a suite of quantitative characteristics about the potentiation of each lineage. 
+Here I describe each measurement to be recorded and discuss my expectations of what I might observe.
+
+I will collect two measures of potentiation gain for each lineage. 
+First, I will record the \textit{maximum observed single-step potentiation gain} of the lineage. 
+Based on the surprising result of all four lineages in Chapter \ref{chap:alife_submission} seeing large potentiating mutations, I expect to see consistently large values for this measurement. 
+To quantify the number of potentiating events, I will also record the \textit{number of potentiation gain windows} in each lineage. 
+I define these windows as subsequent replays in the exploratory phase that see at least 10 percentage points of potentiation gain. 
+Based on the results of the previous chapter, I expect some lineages will experience only a single window of potentiation gain while other lineages experience several. 
+
+Next, once I identify potentiating steps in a lineage, I will record three additional characteristics of each step. 
+The \textit{fitness effect} is a categorical measure that asks if the step was beneficial, neutral, or deleterious relative to the previous genotype in the lineage.  
+I originally hypothesized that most potentiating mutations were neutral or deleterious, but one lineage in Chapter \ref{chap:alife_submission} experienced a beneficial potentiating mutation.
+As such, I expect most mutations to be neutral or deleterious, with a non-negligible fraction being beneficial. 
+The \textit{behavioral phenotype} of the focal step will be analyzed, asking what behavior (see Figure \ref{fig-final-dom-classification}) was exhibited before and after the mutations occurred. 
+I expect most potentiating mutations to not affect the behavior directly, but to potentiate subsequent mutations that change the behavior. 
+Additionally, we can then perform cross-behavior analyses to statistically compare potentiation measures across behavioral backgrounds. 
+Lastly, the \textit{distance to learning} will measure the number of genotypes between the potentiating mutation and the first appearance of learning in the lineage. 
+Further, I will differentiate overall distance from the \textit{meaningful distance to learning}, ignoring mutations to non-executed regions of the genome. 
+Results from Chapter \ref{chap:alife_submission} lead me to expect considerable variation in this measure. 
+
+Finally, I will also collect the same measurements on anti-potentiating mutations and windows (those that confer at least a 10 percentage point \textit{loss} in potentiation).
+I do not expect to observe many examples of these mutations or windows in lineages that evolved associative learning. 
+However, any instances we do find are likely to be very informative, as they show time periods that shifted the lineage away from learning, but werer ultimately recovered from. 
+The main reason for collecting these measures is for the replayed lineages that did \textit{not} evolve associative learning. 
+The expectations for these values are typically the inverse of their potentiation gain counterparts. 
+For example, I expect anti-potentiating phylogenetic steps to most often be beneficial, as they are moving the lineage toward a non-learning local optima. 
+
+
+% Potentiation gain measures for whole lineage:
+% - max single-step gain
+% - number of gain windows
+
+% Measures of largest single step: 
+% - Fitness effect
+% - Behavioral phenotype
+% - Distance to learning (meaningful and not)
+
+% We can also turn _all_ of these around and look at anti-potentiating mutations / windows
+
+% The specific quantitative data that we will collect includes:
+% * Largest single-step gain in potentiation
+% * Number of individual windows that show a potentiation increase greater than 10 percentage points.
+% * Were larger (>10\% point change) potentiating mutations beneficial, neutral, or deleterious?
+% * Phenotypes of individuals with and without each potentiating mutation.
+% * Distance between potentiating mutation and learning (raw and meaningful)
+
+% In order to full characterize potentiation dynamics, we will also track data that we do not expect to be meaningful, but also do not want to miss in case it is:
+% * Largest single-step loss in potentiation
+% * Largest net loss in potentiation over any observed time period.
+
+\subsection{Analyses}
+
+Most data, such as the maximum single-step potentiation of each lineage, will be analyzed as a distribution. 
+Qualitative observations of these distributions will be made, but since these are the first data of their kind we do not have a baseline to compare them against. 
+I will, however, compare across our categorical variables. 
+I will compare the potentiation increases of deleterious, neutral, and beneficial mutations to see if significant differences exist between fitness effects. 
+Similarly, I will compare across behavior backgrounds to determine if the pre-learning strategy exhibited by a lineage affects the chateristics of potentaition. 
+For example, do potentiating mutations that occur in an error correcting phenotype confer more potentiation than those in a bet-hedged learning phenotype? 
+
+% THIS SHOULD BE A PARAGRAPH OR MORE
+% We will conduct a set of additional analyses on these data.
+% * Local landscape analysis measure fitness and learning abilities of each genotype up to two mutations out from each step along a lineage.  Each time learning is found two mutations out, we will identify if it comes with a fitness advantage and whether a direct beneficial pathway exists to get there.
+% * For each highly potentiating mutation, we will measure ongoing contributions by conducting reversion experiments of that mutation further along a lineage, up to and including when learning appears.
+
+Beyond examining the collected potentiation characteristics, I will perform two additional analyses. 
+First, I will analyze the local mutational neighborhood of genotypes along a lineage (up to two steps away). 
+I will measure how often learning was found, the fitness of those genotypes, and if the intermediate genotypes are beneficial. 
+Analyzing the local neighborhoods in conjunction with the potentiating mutations can provide us with insight into how those mutations caused their change in  potentiation. 
+This was shown on a smaller scale in Chapter \ref{chap:alife_submission}, where some potentiating mutations introduced associative learning to the local landscape for the first time, others increased the number of learning genotypes, and some increased the fitness benefit of learning in the local landscape. 
+This analysis can identify epistatic interactions, as introducing learning to the local landscape for the first time demonstrates an interaction that was not possible before. 
+It should be noted, however, that the two-step limit on the neighborhood is an arbitrary limit imposed by the infeasibility of fully enumerating beyond that distance. 
+As such, I must be careful what claims I make about the relationship between the local neighborhood and the theoretical underpinnings of potentiation. 
+However, an expansion of the local neighborhood analysis is possible in the simplified model of Chapter \ref{chap:simplified_model}.
+
+The second additional analysis is a reversion assay of genotypes between the main potentiating step and the first appearance of learning. 
+For each step along that region of the lineage, I will revert the mutations found in the potentiating step. 
+This will help identify when that mutation actually became relevant to fitness and behavior, including the possibility that potentiating mutations are not always active in the first learning behavior but instead were stepping stones along the way.
+Based on explorations during Chapter \ref{chap:alife_submission}, I expect that most potentiating mutations persist until the evolution of learning and continue to play a vital role in that behavior. 
+This analysis will indicate if any potentiating mutations are transient, serving only as a bridge to a more promising region of the fitness landscape. 
+% This needs a little more, not fully explaining the why here yet
+
+ \subsection{Broader impacts}
+
+In this chapter I have proposed to extend Chapter \ref{chap:alife_submission}, diving deeper into potentiating mutations in the evolution of associative learning in Avida. 
+I proposed to conduct similar analyses but at a much larger scale, collecting enough data for us to identify possible trends in potentiation and to allow for future comparative studies. 
+
+Every combination of evolutionary substrate and environment has its quirks, and this particular combination of associative learning and Avida will impact the form that potentiation takes. 
+However, quantitative cross-lineage comparisons have, to my knowledge, never been performed and likely will not be feasible in living systems for quite some time. 
+As such, this work will provide an initial baseline for how potentiation changes along lineages. 
+This data will be invaluable for conceptualizing theory behind how potentiation change (Chapter \ref{chap:simplified_model}) and for direct comparisons with other environments (Chapter \ref{chap:varying_environments}). 
+The value of this data is not limited to the confines of the other chapters in this dissertation proposal, however. 
+It will also provide a solid baseline for comparisons in other areas of evolutionary biology. 
+I will ensure the data is hosted on a well-established scientific data repository (e.g., Open Science Framework, Dryad) so other researchers can use it for their own comparisons. 
+As an example, researchers in microbial systems will, for the first time, have data on how potentiation changes in one model. 
+While the differences in systems will undoubtedly create differences in potentiation, we must start somewhere, and that is exactly what I propose to do with this work. 
+
+In addition to shedding light on how potentiation changes, this work may also change how we view evolving associative learning or Avida itself. 
+If, for instance, I find that potentiating mutations are often doing something trivial but is difficult to do in Avida (e.g., adding a new instruction into an existing loop), that can inform how we shape future digital evolution systems. 
+On the flip side, if I see that potentiation drastically increases with memory availability, that tells us that selecting not just for performance on the task, but also for memory itself \citep{ollionLittleHelpSelection2012, schossauInformationTheoreticNeuroCorrelatesBoost2016}, may increase the rate at which learning evolves. 
+% Predictability / Evolvability?
+
+% \newcommand*{\theadaltb}[1]{\multicolumn{1}{c}{\bfseries #1}}
+
+% \setlength{\tabcolsep}{16pt}
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}[ht]
+%     \centering
+
+%     %\rowcolors{2}{gray!25}{white}
+%     \begin{tabularx}{\linewidth}{lXX} % p{10cm}
+%         \rowcolor{gray!50}
+%         \hline
+%         \theadaltb{Measure} & \theadaltb{Description}  & \theadaltb{Expectation}  \\
+%         \hline
+%         \rowcolor{gray!25}
+%         Maximum single-step potentiation gain & foo & bar \\
+%         \rowcolor{white}
+%         Number of windows with >10pp potentiation gain & a & b \\
+%         \hline
+%     \end{tabularx}
+
+%     \caption{\textbf{Metric descriptions.}}
+%     \label{tab:metrics-definitions}
+% \end{table}

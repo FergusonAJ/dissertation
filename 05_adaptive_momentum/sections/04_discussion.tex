@@ -1,0 +1,177 @@
+\section{Discussion and Conclusion}
+
+% Crossing is pure chance without AM
+%   But has some baseline probability under AM
+%\subsection{Adaptive momentum can drastically alter a population's potential}
+\subsection{Potentiation exhibits adaptive momentum}
+
+In this work, we have corroborated adaptive momentum's benefit to valley crossing (as outlined in \citep{Bohm2024.04.08.588357}) and expanded our understanding of the dynamic. 
+Our initial experiments demonstrated that our system can undergo adaptive momentum, and that disequilibrium is the key driver. 
+However, our main goal in this paper is to provide an alternate vantage point from which to view the dynamics of adaptive momentum. 
+While the original paper validated the effect via aggregated data, here we analyze the underlying dynamics in action on individual populations by quantifying potentiation via replay experiments. 
+
+We have shown that populations outside of momentum windows must rely on chance alone to cross a valley. 
+During these ``equilibrium'' periods, early mutations into the valley, although required for a valley crossing, have no substantial impact on the population's probability of crossing. 
+Conversely, populations in momentum windows immediately see a drastically higher chance to cross, and every mutation in the leading edge is either potentiating or anti-potentiating, depending on the direction. 
+This result is highlighted in Figure \ref{fig-replay-no-window}, where the first cross was pure chance while the second cross was driven by adaptive momentum.
+This work is only a beginning; future work should apply these techniques to examine the role of adaptive momentum in more complex and realistic fitness landscapes.
+
+% Do we need something to tie this section together
+
+
+% The leading edge value almost perfectly predicts potentiation for the first few steps
+\subsection{The leading edge in a spatial selective sweep determines potentiation}
+%\subsection{The position and state of the leading edge of a selective sweep determines its adaptive potential}
+
+The adaptive momentum framework posits that disequilibrium in a population can reduce the selection pressure on the advantaged subpopulation \citep{Bohm2024.04.08.588357}.
+In spatial populations, disequilibrium is focused at the leading edge of selective sweeps, where advantaged mutants encroach on the wild type. %, which is exactly what we see here. 
+Indeed, we observe that the genotype of the organism at the leading edge of the sweep is a strong predictor of potentiation. 
+Moreover, as we can see in the Muller plots, there are often mutated organisms lagging the leading edge. 
+When the leading edge is further into the valley, those lagging organisms have a non-negligible chance to accumulate sufficient mutations to finish crossing the valley, thus increasing the potential.
+
+We aimed to create the simplest system for studying valley crossing in spatial populations.
+In these one-dimensional populations, our artificially-started sweeps have exactly one leading edge. % (although self-actuated sweeps may have two or more). 
+These edges become more complex in two-dimensional digital systems and only increase in complexity moving toward more natural systems. 
+While the identification and measurements of the leading edge may become more difficult, we expect similar dynamics to hold. 
+It is critical that we continue to improve our understanding of adaptive momentum in these simple systems to build a solid theoretical foundation. 
+%We expect that similar dynamics will unfurl in these more complicated systems, but with many more intricacies. 
+%For example, here our potential to cross in a momentum window moves in predictable and sizable steps because we have only one organism at the leading edge. 
+%In more complex systems, these dynamics will be much harder to identify. 
+
+
+% When we take population snapshots, potentiation looks great
+%   If we shuffle the population, potentiation is very low until we cross
+%   If we do clonal restarts, potentiation is only ever ~0% and ~100%
+\subsection{Population heterogeneity and structure affect potentiation}
+
+Previous experiments have conducted analytic replays starting from clonal populations \citep{blountHistoricalContingencyEvolution2008, fergusonPotentiatingMutationsFacilitate2023}. 
+Here, however, we used perfect population snapshots that record every organism in every generation. 
+Our technique provides a more fine-grained look into how potentiation changes. 
+%In fact, if we had started with clonal populations of the most abundant genotype as in previous work, we would only see a maximum of four clones per replicate ($p_{1}$, $p_{2}$, $p_{3}$, and $p_{4}$) because at no time during any of our experiments is the dominant type in a population not a purebred type.
+Furthermore, previous work has often used the most abundant genotype at a time point to seed replay experiments. 
+Across all of our experiments, the most abundant genotype was always on one of the peaks. % ($p_{1}$, $p_{2}$, $p_{3}$, or $p_{4}$).
+Replays looking at the potential of the first cross would see effectively zero probability for $p_{1}$ and $p_{2}$ and 100\% probability for $p_{3}$ and $p_{4}$, which have already crossed, missing all nuance and change in this potential. 
+
+The nuance gained by replaying population snapshots provides important insight into using analytic replay experiments, and puts the large jumps in potentiation seen in previous work into question \citep{fergusonPotentiatingMutationsFacilitate2023}.
+While those large jumps in potentiation are valid, they are likely missing important intermediate genotypes or population dynamics. 
+In effect, they show genetic effects isolated from effects of population structure.
+%Future work should use population snapshots when possible, and further analysis into the effect of using population snapshots instead of clonal restarts should be further disentangled in simple models like this one. 
+Future work looking to leverage replay experiments should be aware that population structure and composition can affect evolutionary outcomes, and should thus carefully consider how replays are initialized. 
+%This work signifies the first step in using genetic potentiation to study population dynamics. 
+
+Further, by shuffling the population snapshots we have shown that it is not just the portion of the population with each genotype that matters, but also the structural relationships and interactions among the organisms (Figure \ref{fig-replay-shuffle}).
+Other computational studies will likely be needed to tease apart when and how this organization matters %; however, while replay experiments of natural organisms are always monumental amounts of work, 
+as perfectly preserving structure and composition of natural populations for so many replicates is currently impossible. 
+As such, we should leverage computational models to develop techniques possible in both digital and natural populations, possibly finding a middle ground between a single clonal sample and full population snapshots. 
+%The organization of the population matters in two ways: 1) preservation of the leading edge and 2) formation of ``depressed'' region. 
+%When we shuffle a population, the leading edge might have fewer organisms left to sweep and thus fewer opportunities for mutations, or, worse, be isolated to only a few organisms that are then purged by purifying selection or genetic drift. 
+%As we see in Figure \ref{fig-replay-double-cross}, valley crosses sometimes occur slightly behind the leading edge in a mutated region that has not yet been subjected to purifying selection. 
+%In these cases, the size of the region matters -- the more organisms in it the longer it will take for them all to be purified. 
+%We have shown that when we shuffle the population, we are destroying these regions and thus limiting potential to cross. 
+
+\subsection{Outlook}
+
+
+%This work not only serves to replicate the expectations of adaptive momentum, but effectively exposes the underlying mechanisms. 
+%By quantifying potentiating and relating this to population composition and structure, we have strengthened the arguments proposed by adaptive momentum theory while also expanding the use cases for potentiation and replay experiments as analytical tools.
+
+This work not only provides evidence to support our understanding of adaptive momentum, but further clarifies the underlying mechanisms. 
+By quantifying the potentiation of valley crosses and relating this measure to population composition and structure, we have % strengthened the arguments proposed in the adaptive momentum framework and 
+provided insights into the historical contingencies and long-term trajectories of populations experiencing adaptive momentum. 
+Further, we advance the methodology of analytic replay experiments by conducting them at a greater scale than previously seen, demonstrating a new use case, and leveraging perfect population snapshots to seed the replay experiments. 
+These advances combine to show that replay experiments can extend genetic potentiation to include the effects of population dynamics. 
+All together, this work constitutes both a step toward better understanding adaptive momentum and a methodological refinement of replay experiments for understanding historical contingency.
+
+
+
+
+
+
+
+
+
+
+
+
+% \section{Discussion and Conclusion}
+
+% % Crossing is pure chance without AM
+% %   But has some baseline probability under AM
+% %\subsection{Adaptive momentum can drastically alter a population's potential}
+% \subsection{Potentiation exhibits adaptive momentum}
+
+% In this work, we have corroborated adaptive momentum's benefit to valley crossing originally outlined in \citep{Bohm2024.04.08.588357}. 
+% Our initial experiments demonstrated that our system can experience adaptive momentum, and that disequilibrium is the key driver. 
+% However, the main goal of this paper is to provide an alternative vantage point from which to view the dynamics of adaptive momentum. 
+% While the original paper validated the effect via aggregated data, here we analyze the underlying dynamics in action on individual populations by quantifying potentiation via replay experiments. 
+
+% We have shown that populations outside of momentum windows must rely on chance alone to cross the valley. 
+% During these ``equilibrium'' periods, early mutations into the valley, although required for a valley crossing, have no substantial impact on the population's probability of crossing. 
+% Conversely, populations in momentum windows immediately see a drastically higher chance to cross, and every mutation in the leading edge is either potentiating or anti-potentiating, depending on the direction. 
+% This is highlighted in Figure \ref{fig-replay-no-window}, where the first cross was pure chance while the second cross was driven by adaptive momentum.
+% This work is only the beginning, and future work should apply similar techniques to understanding the role of adaptive momentum in other, more complex, fitness landscapes.
+
+% % Do we need something to tie this section together
+
+
+% % The leading edge value almost perfectly predicts potentiation for the first few steps
+% \subsection{The leading edge in a spatial selective sweep determines potentiation}
+% %\subsection{The position and state of the leading edge of a selective sweep determines its adaptive potential}
+
+% The adaptive momentum framework posits that disequilibrium in a population can reduce the selection pressure on the advantaged subpopulation \citep{Bohm2024.04.08.588357}.
+% In a spatial populations, disequilibrium is focused at the leading edge of selective sweeps, where the advantaged mutants will continue to encroach on the wild type. %, which is exactly what we see here. 
+% Indeed, we observe that the genotype of the organism at the leading edge of the sweep is a strong predictor of potentiation in this system. 
+% Moreover, as we can see in the Muller plots, there is often a cluster of mutated organisms lagging the leading edge. 
+% When the leading edge is further into the valley and fewer mutations are needed to cross, those lagging organisms have a non-negligible chance to accumulate sufficient mutations and cross the valley, increasing the potential.
+
+% We aimed to create the simplest system for studying the leading edge of spatial populations.
+% In these one-dimensional populations, our artificially-started sweeps have exactly one leading edge. % (although self-actuated sweeps may have two or more). 
+% These edges become more complex in two-dimensional digital systems and only increase in complexity moving toward more natural systems. 
+% While the identification and use of the leading edge for making predictions may become more difficult, we expect similar dynamics to hold. 
+% It is critical that we continue to improve our understanding of adaptive momentum in these simple systems to build a solid foundation to expand upon. 
+% %We expect that similar dynamics will unfurl in these more complicated systems, but with many more intricacies. 
+% %For example, here our potential to cross in a momentum window moves in predictable and sizable steps because we have only one organism at the leading edge. 
+% %In more complex systems, these dynamics will be much harder to identify. 
+
+
+% % When we take population snapshots, potentiation looks great
+% %   If we shuffle the population, potentiation is very low until we cross
+% %   If we do clonal restarts, potentiation is only ever ~0% and ~100%
+% \subsection{Population heterogeneity and structure affect potentiation}
+
+% Previous work using analytic replay experiments have started the replays with clonal populations \citep{blountHistoricalContingencyEvolution2008, fergusonPotentiatingMutationsFacilitate2023}. 
+% Here, however, we ran replays with perfect population snapshots that record every organism in every generation. 
+% This technique provides a more fine-grained look into how potentiation changes. 
+% %In fact, if we had started with clonal populations of the most abundant genotype as in previous work, we would only see a maximum of four clones per replicate ($p_{1}$, $p_{2}$, $p_{3}$, and $p_{4}$) because at no time during any of our experiments is the dominant type in a population not a purebred type.
+% Previous work has used the most abundant organism at a time point to seed replay experiments. 
+% Across all of our experiments, the most abundant organism type was always on one of the peaks. % ($p_{1}$, $p_{2}$, $p_{3}$, or $p_{4}$).
+% Replays looking at the potential of the first cross would see effectively zero probability for $p_{1}$ and $p_{2}$ and 100\% probability for $p_{3}$ and $p_{4}$, which have already crossed, missing all nuance and change in this potential. 
+
+% The nuance gained by replaying population snapshots provides important insight into using analytic replay experiments, and puts the large jumps in potentiation seen in previous work into question \citep{fergusonPotentiatingMutationsFacilitate2023}.
+% While those large jumps in potentiation are valid, they are likely missing important intermediate genotypes or population dynamics. 
+% In effect, they show genetic effects isolated from effects of population structure.
+% %Future work should use population snapshots when possible, and further analysis into the effect of using population snapshots instead of clonal restarts should be further disentangled in simple models like this one. 
+% Future work looking to leverage replay experiments should be aware of the effect that population structure and composition can have on evolutionary outcomes, and should thus carefully consider how replays are initialized. 
+% %This work signifies the first step in using genetic potentiation to study population dynamics. 
+
+% Further, by shuffling the population snapshots we have shown that it is not just the portion of the population with each genotype that matters, but also the structural relationships and interactions among the organisms (Figure \ref{fig-replay-shuffle}).
+% Other computational studies will likely be needed to tease apart when and how this organization matters %; however, while replay experiments of natural organisms are always monumental amounts of work, 
+% as perfectly preserving structure and composition of natural populations for so many replicates is currently impossible. 
+% As such, we should leverage computational models to develop techniques possible in both digital and natural populations, possibly finding a middle ground between a single clonal sample and full population snapshots. 
+% %The organization of the population matters in two ways: 1) preservation of the leading edge and 2) formation of ``depressed'' region. 
+% %When we shuffle a population, the leading edge might have fewer organisms left to sweep and thus fewer opportunities for mutations, or, worse, be isolated to only a few organisms that are then purged by purifying selection or genetic drift. 
+% %As we see in Figure \ref{fig-replay-double-cross}, valley crosses sometimes occur slightly behind the leading edge in a mutated region that has not yet been subjected to purifying selection. 
+% %In these cases, the size of the region matters -- the more organisms in it the longer it will take for them all to be purified. 
+% %We have shown that when we shuffle the population, we are destroying these regions and thus limiting potential to cross. 
+
+% \subsection{Outlook}
+
+
+% %This work not only serves to replicate the expectations of adaptive momentum, but effectively exposes the underlying mechanisms. 
+% %By quantifying potentiating and relating this to population composition and structure, we have strengthened the arguments proposed by adaptive momentum theory while also expanding the use cases for potentiation and replay experiments as analytical tools.
+
+% This work not only replicates the expectations of adaptive momentum, but helps elucidate the underlying mechanisms. 
+% By quantifying the potentiation of valley crosses and relating this to population composition and structure, we have strengthened the arguments proposed in the adaptive momentum framework and provided insights into the long-term trajectories and historical contingencies of individual populations experiencing adaptive momentum. 
+% Further, this work advances the methodology of analytic replay experiments by conducting them at a much greater scale than previously seen, demonstrating a new use case, and leveraging perfect population snapshots to seed the replay experiments. 
+% These advances combine to show that replay experiments can extend genetic potentiation to include the effects of population dynamics. 
+% All together, this work constitutes both a step in better understanding the adaptive momentum phenomenon and a step in refining replay experiments for understanding historical contingency.

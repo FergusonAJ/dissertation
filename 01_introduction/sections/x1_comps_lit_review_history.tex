@@ -1,0 +1,72 @@
+\section{The role of history in evolution}
+
+% Background - history vs chance vs adaptation
+%Evolutionary biologists have long debated the factors that contribute to evolution. 
+While the ideas of evolution and natural selection have been around for well over one hundred and fifty years \citep{darwin1859}, evolutionary biologists continue to argue about, test, and expand upon the different factors that contribute to evolution. 
+Here I focus on the role of history in evolution, one of the three aspects succinctly identified by \citet{travisanoExperimentalTestsRoles1995}. 
+%How these particular aspects of evolution interact has been a source of long standing debate. 
+While adaptation was the initial frontrunner, researchers argued for the importance of chance % (in the form of random mutations and genetic drift) 
+\citep{kimuraEvolutionaryRateMolecular1968, king1969non, mayrHowCarryOut1983} and later history \citep{gouldSpandrelsSanMarco1979, gouldWonderfulLifeBurgess1990} in evolution. 
+% More recent examples? What does the field think now?
+
+% What do we mean by the role of history in evolution? 
+%In talking about the history of evolution, 
+%It may appear obvious that history plays an important role in evolution, as evolution inherently relies on new organisms coming from those that already exist. 
+It may appear obvious that history plays an important role in evolution, as the set of genetic sequences that could feasibly appear in the population relies on what sequences currently exist.
+Here, however, I mainly focus on the idea of ``historical contingency'' -- the idea that small, often initially inconsequential changes can have a drastic effect on what ultimately evolves. 
+As an example, consider a set of three genes, A, B, and C, that together give rise to a highly beneficial trait. 
+All three genes are equally beneficial in isolation, while AB is slightly more beneficial but AC and BC are both detrimental to fitness. 
+In this scenario, populations that have fixed either A or B in isolation have a beneficial pathway to the combined trait, ABC. 
+If instead a population has fixed C by itself, the ABC trait becomes much harder to evolve, as both intermediate steps are deleterious; a double mutation is then needed to reach the trait without losing fitness. 
+Even in this simple example, the initial fixing of C has no penalty when it occurs, but it shifts the possibilities of what is likely to evolve in the future. 
+For a thorough review of the ideas and complications of historical contingency, as well as empirical investigations into its role in evolution, see \citep{blountContingencyDeterminismEvolution2018}.
+
+While work has been done to study the role of historical contingency in the evolution of natural populations (e.g., \citep{lososContingencyDeterminismReplicated1998, kellerHistoryChanceAdaptation2008}), here I base my work on empirical studies of historical contingency in experimental evolution.
+Early work in \textit{Escherichia coli} produced two drastically different results. 
+Researchers found no influence of the initial value of fitness reflected in the populations' final evolved fitness, but in the same experiment, they found that the final evolved cell size of a population was highly contingent in the initial cell size of that replicate \citep{travisanoExperimentalTestsRoles1995}. %one trait (fitness) saw no change at the end of evolution regardless of the population's initial value, while another evolved trait (cell size) did vary depending on the starting condition \citep{travisanoExperimentalTestsRoles1995}. 
+Building off this framework, \citet{flores-moyaEffectsAdaptationChance2012} found evidence that history plays a key role in the evolution of growth rate and toxin cell quota in algae. 
+Recently, \citet{smithFitnessEvolvingBacterial2022} have shown that, while history does play a role in the evolution of \textit{E. coli}, the interactions between adaptation, chance, and history can heavily depend on traits under investigation and the environment being studied. 
+By leveraging clever experimental evolution studies, these researchers have shown that it is possible to disentangle the influence of adaptation, chance, and history on evolution in a particular system. 
+
+% For a review of empirical \textit{in vitro} studies on historical contingency, see \citep{blountContingencyDeterminismEvolution2018}.
+% This currently feels _very_ brief
+
+Digital systems have also been used to study historical contingency's role in evolution. %, often leveraging the strengths of digital systems to conduct experiments not possible in living systems. 
+By comparing normal evolutionary replicates to those where deleterious mutations were automatically reverted, \citet{covertiiiExperimentsRoleDeleterious2013} found that initially-deleterious mutations can increase the complexity of evolved traits. 
+Separately, \citet{yedidHistoricalContingentFactors2008} found that, using a controlled extinction event, pre-extinction presence of a complex trait factored into the re-evolution of the trait after the event. 
+The seminal work of \citet{travisanoExperimentalTestsRoles1995} was also replicated in the digital evolution system Avida and expanded to look at the contributions of adaptation, chance, and history over time, thanks to the perfect record keeping of digital systems \citep{wagenaarInfluenceChanceHistory2004}.
+More recently, \citet{bundyHowFootprintHistory2021} leveraged the speed of digital evolution to test the how the depth of history affects future evolution, dealing with generation counts well beyond what is currently feasible in microbial systems. 
+Finally, \citet{braughtEffectsLearningRoles2007} recreated the initial \textit{E. coli} and Avida experiments using neural networks and demonstrated an interaction between adaptation, chance, history, and the Baldwin effect; they found that learning can influence the impact of the three factors. 
+These studies show that not only are these techniques viable in digital systems, but that digital systems can \textit{expand upon them} to conduct research that would otherwise be impossible.
+
+\subsection{Potentiation}
+
+While this dissertation proposal focuses on investigations of the role of history in the evolution of cognitive behaviors, most chapters emphasize the concept of ``potentiation''. 
+Here we define potentiation as the likelihood that a target trait evolves from a given initial genotype or population.
+
+The foundational work for measuring potentiation comes from \citet{blountHistoricalContingencyEvolution2008}. 
+The authors empirically tested whether the novel citrate metabolism in one of the Long Term Evolution Experiment populations \citep{lenskiLongtermExperimentalEvolution1991} was due to a fluke mutation or the accumulation of a potentiated genetic background. 
+To do so, they founded multiple ``replay'' populations from various points along the lineage that originally evolved to metabolize citrate. 
+They found that the metabolization of citrate was more likely to evolve from samples further along the lineage, providing support that genetic potentiation was a key factor. 
+
+Essentially, this framework is applying the analysis of \citet{travisanoExperimentalTestsRoles1995} along each step of a lineage, and by varying the amount of evolutionary history present, we can identify shifts in the contributions of adaptation and chance in the evolution of the target trait.
+Increases in potentiation indicate an increased contribution of adaptation, as the trait is now more likely to evolve. 
+This could happen if the population has moved such that a more-adaptive (or less un-adaptive) pathway to the target trait now exists. 
+Decreases in potentiation, on the other hand, indicate a stronger reliance on chance and could be the result of convergence to a local optima in the fitness landscape.
+The selective pressure of this optima could leave the population reliant on fluke mutations or genetic drift to escape and potentially find the target trait.
+Ultimately, a difference in potentiation between two points on a lineage indicates that the genetic changes between them, which are considered history in the context of the later point, are important in whether the target trait ultimately evolves.
+This opens the possibility of examining what mutations fall in this window, how they affected the organism overall, and if their appearance in the lineage was due to adaptation or chance.
+
+
+Since that initial study, researchers have conducted similar experiments (now called analytic replay experiments) in various systems and looking at various traits. 
+These include evolvability in \textit{E. coli} \citep{woodsSecondorderSelectionEvolvability2011}, novel receptor usage in Phage $\lambda$ \citep{meyerRepeatabilityContingencyEvolution2012}, and, recently, the epistatic interactions in yeast \citep{vignognaExploringLocalGenetic2021}.
+Across these systems, the researchers showed that the accumulated genetic background is profoundly important in the eventual evolution of the target trait. 
+While these techniques are relatively new, they offer valuable insight into how the interplay of adaptation, chance, and history can influence what subsequently evolves. 
+These studies look backward, empirically testing what changes led to the final evolved behaviors, but this is deeply intertwined with concepts such as predictability in evolution. 
+As such, I expect research in the near future to begin weaving these findings into the broader tapestry of evolutionary dynamics.
+%For further examples, \citet{blountContingencyDeterminismEvolution2018} provide a review of studies that perform analytic replays and other similar experiments that examine the role of historical contingency in evolution. 
+
+% Studies of potentiation provide a glimpse into the impact that the accumulated genetic background had on later evolution. 
+% This is deeply intertwined with the idea of predicting evolution, and in fact will likely heavily influence how we view evolutionary predictability in the future. 
+% So far, however, potentiation studies have looked backward, empirically testing what changes led to the final behaviors that eventually evolved.  
+% [TODO: Finish this thought]

@@ -1,0 +1,55 @@
+\section{Genetic potentiation}
+
+% Define genetic potentiation
+While this dissertation investigates the role of history in evolution, most chapters narrow that focus to the ``potentiation'' of a focal trait. 
+The term ``potentiation'' has been used in many different ways, but here I define potentiation as the likelihood that the focal trait evolves from a given initial genotype or population (adapted from \citet{blountHistoricalContingencyEvolution2008}).
+If a change (e.g., a mutation or an environmental shift) increases the likelihood that the focal trait evolves, that is a \textit{potentiating} change, as indicated by the increase in the trait's potentiation value. 
+Here my emphasis is on genetic potentiation, where changes in potentiation are due solely to accumulated genetic changes in the organisms, as opposed to environmental or anatomical potentiation \citep{heydukGeneticsConvergentEvolution2019}.
+Critically, the idea of potentiation is to separate the \textit{actualizing} mutations that confer the focal trait from the \textit{potentiating} mutations that made the evolution of that trait more likely.
+Indeed, a potentiating mutation may have no (or even negative) consequences on fitness in the short term, until additional mutations build upon it.
+
+% Standard, non-replay potentiation
+Early studies of potentiation often follow a variation of the question: If mutation X arises, how does that affect the evolution of trait Y? 
+As an example, we can consider the work by \citet{giffordIdentifyingExploitingGenes2018}. 
+The authors identify mutations in the transcription factor \textit{ampR} as present among strains of \textit{Pseudomonas} capable of quickly evolving resistance to the antibiotic ceftazidime. 
+Importantly, the authors show that mutations to \textit{ampR} alone do not constitute antibiotic resistance; they only prime the evolution of antibiotic resistance. 
+That is, the mutations in \textit{ampR} \textit{potentiated} the evolution of antibiotic resistance. 
+
+% Overview the literature of this type
+While it is easy to conflate the notion of potentiating mutations with positive (or synergistic) epistatic interactions, it should be noted that the two are technically distinct ideas.
+Here we consider epistasis as originally outlined by \citet{fisherCorrelationRelativesSupposition1919}, where epistatic interactions occur when the appearance of two genes create a trait value that differs from the predicted combination of their effects in isolation (typically with an additive or multiplicative expectation).
+%Indeed, many examples highlight potentiating mutations that epistatically interact with mutations conferring the focal trait, including the 
+Epistatic interactions can be potentiating, and in fact, many examples of potentiating mutations in the literature demonstrate epistasis between the potentiating mutation and the focal trait \citep{douglasIdentificationPotentiatingMutations2017,giffordIdentifyingExploitingGenes2018}. 
+This relationship, however, does not need to be direct; we can imagine scenarios where the potentiating mutation is a ``gateway'' to the desired region of the fitness landscape, or where the potentiating mutation epistatically interacts with a third mutation that then increases the fitness of the actualizing step. 
+To consider a mutation potentiating, it only needs to improve the likelihood that the focal trait evolves. 
+
+% Give the history - citrate metabolism replays
+How do we find these potentiating mutations? 
+A common approach is to isolate lineages that have evolved the focal trait from an outgroup that have not (either via experimental evolution or collection from the wild) and then analyze genomes from both groups. 
+Mutations commonly found in the actualized group but rarely in the outgroup are likely to be vital to the evolution of the focal trait, either potentiating or actualizing mutations, and further experiments can disentangle the relationship of the mutations \citep{giffordIdentifyingExploitingGenes2018,cumminsRolePotentiatingMutations2021}.
+
+Here, however, I employ \textit{replay experiments}, an empirical technique to retroactively identify potentiating mutations within a given evolved lineage. 
+In the pioneering work on replay experiments, \citet{blountHistoricalContingencyEvolution2008} empirically tested whether the novel citrate metabolism in one of Richard Lenski's Long-Term Evolution Experiment (LTEE) populations \citep{lenskiLongtermExperimentalEvolution1991} was due to a fluke mutation or the accumulation of a potentiated genetic background. 
+To do so, they revived frozen samples from the LTEE to found multiple ``replay'' populations from various points along the lineage that originally evolved to metabolize citrate. 
+Conceptually, if the fraction of replay populations that evolved citrate metabolism increased between generation $N$ and generation $N + K$, we know that one or more potentiating mutations occurred in those $K$ generations. 
+Indeed, this result is what they found; the metabolization of citrate was more likely to evolve from samples further along the lineage, providing support that genetic potentiation was a key factor. 
+
+% Situate potentiation in the selection, chance, and history framework
+Essentially, this framework is applying the analysis of \citet{travisanoExperimentalTestsRoles1995} along steps of a lineage.
+By starting evolutionary replicates from various points in the population's history, we are experimentally manipulating the shared history among replicates.
+Differences in what evolves in these replicates can then identify changes that occurred in the population's history that shifted the contributions of selection and chance in the evolution of the focal trait.
+Increases in potentiation indicate an increased contribution of selection, as the trait is now more likely to evolve. 
+Such an increase could happen if the population has moved to a position in genetic space where a more adaptive (or less maladaptive) pathway to the focal trait now exists. 
+Decreases in potentiation, on the other hand, indicate a stronger reliance on chance and could, for example, be the result of convergence to a local optimum in the fitness landscape.
+The selective pressure of this optimum could leave the population reliant on fluke mutations or genetic drift to escape and potentially find the focal trait.
+Ultimately, a difference in potentiation between two points on a lineage indicates that the genetic changes between them, which are considered history in the context of the later point, are important in whether the focal trait ultimately evolves.
+Identifying a substantial change in potentiation from one time point to another opens the possibility of examining what mutations fall in this window, their immediate effect on the organism, and if their appearance in the lineage was due to selection or chance.
+Additionally, the size of the replay window is arbitrary; we can skip thousands of generations between checks for potentiating events or, in the extreme case, test every single generation. 
+
+% Lit review
+Since the initial study \citep{blountHistoricalContingencyEvolution2008}, researchers have conducted similar experiments (now called analytic replay experiments, \citep{blountContingencyDeterminismEvolution2018}) in multiple systems and looking at various traits. 
+These include clade extinction and evolvability in \textit{E. coli} \citep{woodsSecondorderSelectionEvolvability2011, turnerReplayingEvolutionTest2015}, novel receptor usage in Phage $\lambda$ \citep{meyerRepeatabilityContingencyEvolution2012, guptaHostparasiteCoevolutionPromotes2022}, colistin resistance in \textit{Pseudomonas aeruginosa} \citep{jochumsenEvolutionAntimicrobialPeptide2016a}, and, recently, the epistatic interactions in yeast \citep{vignognaExploringLocalGenetic2021}.
+Across these systems, the researchers showed that the accumulated genetic background is profoundly important in the eventual evolution of the focal trait. 
+While these techniques are relatively new, they offer valuable insight into how the interplay of selection, chance, and history can influence subsequent evolution. 
+These studies look backward, empirically testing what changes led to the final evolved behaviors, but the resulting potentiation dynamics are deeply intertwined with concepts such as predictability in evolution. 
+As such, I expect research in the near future to begin weaving these findings into the broader tapestry of evolutionary dynamics.

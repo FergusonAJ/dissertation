@@ -1,0 +1,46 @@
+\section{The role of history and historical contingency in evolution}
+
+% Background - history vs chance vs selection
+While the ideas of evolution and natural selection have been around for well over one hundred and fifty years \citep{darwin1859}, evolutionary biologists continue to argue about, test, and expand upon the different factors that contribute to evolution. 
+%Here I focus on the role of history in evolution, one of the three aspects succinctly identified by \citet{travisanoExperimentalTestsRoles1995}. 
+While selection was the initial frontrunner, researchers argued for the importance of chance \citep{kimuraEvolutionaryRateMolecular1968, king1969non, mayrHowCarryOut1983} and later history \citep{gouldSpandrelsSanMarco1979, gouldWonderfulLifeBurgess1990} in evolution. 
+% More recent examples? What does the field think now?
+
+% What do we mean by the role of history in evolution? 
+It may appear obvious that history plays an important role in evolution, as the set of genetic sequences that could feasibly appear in the population relies on what sequences currently exist.
+Here, however, I mainly focus on the idea of ``historical contingency'' -- the idea that small, often initially inconsequential changes can have a drastic effect on what ultimately evolves. 
+As an idealized example, consider a set of three mutations, A, B, and C, that together give rise to a highly beneficial trait. 
+All three mutations are equally beneficial in isolation, while AB is slightly more beneficial but AC and BC are both detrimental to fitness. 
+In this scenario, populations that have fixed either A or B in isolation have a beneficial pathway to the combined trait, ABC. 
+If instead a population has fixed C by itself, the ABC trait becomes much harder to evolve, as both intermediate steps are deleterious; a double mutation is then needed to reach the trait without losing fitness. 
+Even in this simple example, the initial fixing of C has no penalty when it occurs, but it shifts the possibilities of what is likely to evolve in the future. 
+For a thorough review of the ideas and complications of historical contingency, as well as empirical investigations into its role in evolution, see \citep{blountContingencyDeterminismEvolution2018}.
+
+% Experimental results - experimental microbial evolution
+While work has been done to study the role of historical contingency in the evolution of natural populations (e.g., \citep{lososContingencyDeterminismReplicated1998, kellerHistoryChanceAdaptation2008, okeIndependentLineagesCommon2019}), here I base my work on empirical studies of historical contingency in experimental evolution.
+Early work in \textit{Escherichia coli} produced two drastically different results. 
+Researchers found no influence of the initial value of fitness reflected in the populations' final evolved fitness, but in the same experiment, they found that the final evolved cell size of a population was highly contingent in the initial cell size of that replicate \citep{travisanoExperimentalTestsRoles1995}. 
+Building off this framework, \citet{flores-moyaEffectsAdaptationChance2012} found evidence that history plays a key role in the evolution of growth rate and toxin cell quota in algae. 
+\citet{santos-lopezRolesHistoryChance2021} found that even shallow differences in history can influence the evolution of antimicrobial resistance. 
+Recently, \citet{smithFitnessEvolvingBacterial2022} have shown that, while history does play a role in the evolution of \textit{E. coli}, the interactions between selection, chance, and history can heavily depend on traits under investigation and the environment being studied. 
+By leveraging clever experimental evolution studies, these researchers have shown that it is possible to disentangle the influence of selection, chance, and history on evolution in a particular system. 
+% What about work that looks at historical contingnecy but without the explicit selection, chance, and history split? 
+%\citep{card}
+
+Further work has investigated historical contingency in evolution without explicitly quantifying the contributions of these three basal factors.
+Many studies can be categorized under this label, but here I highlight a few representatives. 
+Multiple teams have investigated how historical contingency often creates genotypic variance while selection is able to derive similar phenotypic outcomes \citep{simoesPredictablePhenotypicNot2017,bedhommeGenotypicNotPhenotypic2013}.
+In antibiotic resistance, historical contingency can alter both evolvability and the particular genetic pathways evolution takes \citep{cardGenomicEvolutionAntibiotic2021, cardHistoricalContingencyEvolution2019}.
+While historical contingency can be caused by any genetic change, recent work has highlighted contingency caused by cryptic genetic variation \citep{zheng_cryptic_2019} and synonymous mutations \citep{mcgrathFitnessBenefitsSynonymous2024}.
+
+
+% Experimental results - digital evolution
+%Digital systems have also been used to study historical contingency's role in evolution.
+There is also a long and rich history of using digital systems for studying historical contingency's role in evolution \citep{taylorReplayingTapeInvestigation1998}.
+We can even consider studies that were not initially thought of as investigations of historical contingency, such as how to choose the starting population in evolutionary computation \citep{burkeInitializationStrategiesDiversity1998, schmidtIncorporatingExpertKnowledge2009}.
+Specifically analyzing contingency, the seminal work of \citet{travisanoExperimentalTestsRoles1995} on the roles of selection, chance, and history over time was also replicated and expanded in the digital evolution system Avida, with far more statistical power thanks to the perfect record keeping of digital systems \citep{wagenaarInfluenceChanceHistory2004}.
+\citet{braughtEffectsLearningRoles2007} again expanded this work by using neural networks and demonstrated an interaction between selection, chance, history, and the Baldwin effect; they found that learning can influence the impact of the three factors.
+By comparing normal evolutionary replicates to those where deleterious mutations were automatically reverted, \citet{covertiiiExperimentsRoleDeleterious2013} found that initially-deleterious mutations can increase the probability of complex traits evolving.
+\citet{yedidHistoricalContingentFactors2008} used a controlled extinction event and found that the pre-extinction presence of a complex trait factored into the re-evolution of the trait after the extinction event. 
+More recently, \citet{bundyHowFootprintHistory2021} leveraged the speed of digital evolution to test how the depth of history affects future evolution, dealing with generation counts well beyond what is currently feasible in microbial systems. 
+These studies show that not only are these techniques viable in digital systems, but that digital systems can \textit{expand upon them} to conduct research that would otherwise be impossible.

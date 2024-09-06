@@ -1,0 +1,143 @@
+\section{Completed and proposed work}
+%\newcommand*{\theadaltb}[1]{\multicolumn{1}{c}{\bfseries #1}}
+
+%This dissertation proposal investigates how the contributions of adaptation, chance, and history change over time in the evolution of cognitive behaviors. 
+In this section I provide a breakdown of what is covered in each of the remaining chapters.
+Table \ref{tab:chapter-guide} is provided for an overview at a glance.
+
+% \setlength{\tabcolsep}{16pt}
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}[ht]
+%     \centering
+
+%     %\rowcolors{2}{gray!25}{white}
+%     \begin{tabularx}{0.9\linewidth}{lXXX} % p{10cm}
+%         \rowcolor{gray!50}
+%         \hline
+%         \theadalt{Chapter} & \theadalt{Representation}  & \theadalt{Environment} & \theadalt{Focus} \\
+%         \hline
+%         \rowcolor{gray!25}
+%         2 + 3 & Avida & \makecell[l]{Associative \\ learning} & Potentiation \\
+%         \rowcolor{white}
+%         4 & Bitstring & NK landscapes & Potentiation\\
+%         \rowcolor{gray!25}
+%         5 & Avida & Cyclic logic 6 & \makecell[l]{Evolutionary \\ consequences} \\
+%         \rowcolor{white}
+%         6 & Avida & \makecell[l]{Cyclic logic 6 + \\ Patch harvesting} & Potentiation\\
+%         \rowcolor{gray!25}
+%         7 & Markov brains & Patch harvesting & Potentiation \\
+%         \hline
+%     \end{tabularx}
+
+%     \caption{An overview of the study system and focal evolutionary dynamic for each chapter.}
+%     \label{tab:chapter-guide}
+% \end{table}
+
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.5\hsize}X}
+\newcolumntype{x}{>{\hsize=.45\hsize}X}
+\setlength{\tabcolsep}{16pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+    \centering
+
+    %\rowcolors{2}{gray!25}{white}
+    \begin{tabularx}{\linewidth}{|xxbss|} % p{10cm}
+        \rowcolor{gray!50}
+        \hline
+        \theadalt{Chapter} & \theadalt{System}  & \theadalt{Environment} & \theadalt{Focus} & \theadalt{Status} \\
+        \hline
+        \rowcolor{gray!25}
+        2 & Avida 5 & \makecell[l]{Associative  learning} & Potentiation & Submitted \\
+        \rowcolor{white}
+        3 & Avida 5 & \makecell[l]{Associative  learning} & Potentiation & In progress \\
+        \rowcolor{gray!25}
+        4 & Bitstring & NK landscapes & Potentiation & Proposed \\
+        \rowcolor{white}
+        5 & Avida 2 & Cyclic logic 6 & \makecell[l]{Evolutionary \\ consequences}  & Published\\
+        \rowcolor{gray!25}
+        6 & Avida 5 & \makecell[l]{Cyclic logic 6 + \\ Patch harvesting} & Potentiation & Proposed\\
+        %\rowcolor{white}
+        %7 & Markov brains & Patch harvesting & Potentiation  & Alternate\\
+        \hline
+    \end{tabularx}
+
+    \caption{An overview of the study system, focal evolutionary dynamic, and current status  for each chapter in this dissertation proposal.}
+    \label{tab:chapter-guide}
+\end{table}
+
+
+% We start with \textbt{Chapter \ref{02_alife_submission}}, a current submission that analyzes the potentiation of associative learning. 
+As in many experimental evolution studies, we can run multiple replicates and count how many evolve a specific behavior.
+In \textbf{Chapter \ref{chap:alife_submission}}, I start to investigate the question: As an individual replicate progresses, can we identify if the evolution of a target behavior has become either impossible or inevitable?
+I focus on retrospective analyses of four successful lineages in Avida, measuring the likelihood that associative learning ultimately re-evolves when restarting from each step (\textit{i.e.}, I track \textit{potentiation} over time).
+%This is what I study in \textbf{Chapter \ref{chap:alife_submission}}, a current submission that analyzes changes in potentiation along lineages that successfully evolved associative learning in Avida. 
+I find that potentiation can increase suddenly, even with a single phylogenetic step.
+%Leveraging analytic replay experiments, I examined four case study lineages and found that potentiation can increase drastically in a single phylogenetic step. 
+These potentiating mutations are hard to pin down, however, as some mutations are clearly related to associative learning while the effects of other mutations remain unclear. 
+
+I propose to extend this work in \textbf{Chapter \ref{chap:replaying_associative_learning}}, expanding well beyond four case-study lineages, collecting more comprehensive data, and attempting to draw statistically powerful conclusions.
+%%While Chapter \ref{chap:alife_submission} demonstrated %the effectiveness of the system and showed 
+%that potentiation can occur suddenly, limiting the study to only four lineages proved restrictive when looking at \textit{how} the mutations were potentiating. 
+%Therefore, in Chapter 3 I propose to replay many more lineages and analyze them in the aggregate. 
+By extracting summary statistics about the changes in potentiation, we can identify patterns %in this measure and develop more informed hypotheses 
+and collect more data
+about the different types of mutations shown to promote potentiation.  %that might potentiate a particular trait. 
+Additionally, these potentiation measurements will provide a basis of comparison for future work on this topic, both in this proposal and beyond.
+
+But what are the underlying mechanisms for a mutation to increase potentiation?
+%Even before conducting the work for Chapter \ref{chap:replaying_associative_learning}, the results from Chapter \ref{chap:alife_submission} have provided evidence that there are multiple ways a mutation might increase potentiation.
+While some mutations may simply move toward the target trait in genotype space, others appear to move \textit{away} from that behavior while still increasing potentiation. 
+%We have found evidence that some potentiating mutations directly introduce the focal behavior to the local fitness landscape, others shift the local fitness landscape so there is a pathway between the current genome and the focal behavior (though the behavior itself is not in the immediate landscape), and finally some potentiating mutations increase the benefit of the focal behavior so it becomes more likely to be selected. 
+In \textbf{Chapter \ref{chap:simplified_model}}, I will shift to a more tractable system to fully explore these possibilities, while also testing the generality of my earlier results.
+Specifically, I will quantify potentiation in bitstrings evolving on NK landscapes. 
+%Simplifying the model gives us several benefits: A) it allows us to run many more replicates in less time, B) it allows us to enumerate spaces in a way that is impossible in more complicated models, and C) it is easier to fully analyze portions of the landscape. 
+In addition to providing greater speed and expanded analysis possibilities, analyzing NK landscapes will allow us to examine the relationship between epistatic interactions and potentiation. 
+As such, this simplified model will provide the first glimpse into how potentiation dynamics change as we vary representations and environments, putting the associative learning results in a broader context and setting the stage for generalized hypotheses of potentiation.
+Furthermore, NK landscapes can be made small enough to allow exhaustive analysis of potentiation across the entire landscape, not just along a single lineage.
+These additional data will allow me to conduct more comprehensive analyses of potentiation dynamics.
+
+%\textbf{Chapter \ref{chap:consequences_of_plasticity}} is previously-published work that takes a step back to ask what downstream effects can occur \textit{after} a trait evolves.
+\textbf{Chapter \ref{chap:consequences_of_plasticity}} is previously-published work that examines phenotypic plasticity and whether or not it potentiates associated traits.
+%asks what downstream effects can occur \textit{after} a trait evolves.
+%analyzes what happens to evolution \textit{after} adaptive phenotypic plasticity evolves. 
+I analyzed the effects of reactive phenotypic plasticity, a common stepping stone for cognitive behaviors, on future evolution. 
+I found that adaptive plasticity stabilizes new tasks once they evolve, but does not seem to increase the probability of them evolving in the first place. % the de novo origin of the other tasks under investigation.
+Specifically, in a fluctuating environment, plasticity shifts the evolutionary dynamics (evolutionary change, retention of novel tasks, deleterious mutation accumulation, etc.) closer to those of a static environment. 
+While this chapter does not directly investigate cognitive behaviors, it does indicate that plasticity increases potentiation through stabilizing new traits.
+Furthermore, it indicates that lineages that evolve reactive plasticity before evolving cognitive behaviors may benefit from similar stabilizing dynamics.
+
+%These methods of looking at the role of history in evolution in non-trivial environments are not limited to associative learning. 
+%I then propose \textbf{Chapter \ref{chap:varying_environments}} to use the cyclic environment from Chapter \ref{chap:consequences_of_plasticity} and a patch harvesting environment to ask if patterns in potentiation generalize across environments.
+In \textbf{Chapter \ref{chap:varying_environments}}, I ask how patterns in potentiation generalize across environments.
+I will do this by comparing the potentiation of associative learning in Chapter \ref{chap:replaying_associative_learning} and in NK landscapes in Chapter \ref{chap:simplified_model} to two new environments: the evolution of optimal plasticity in the cyclical environment (from Chapter \ref{chap:consequences_of_plasticity}) and a cognitive multi-patch harvesting behavior. 
+%While the potentiation dynamics in a single environment are interesting in their own right, finding cross-environment similarities in how potentiation changes would provide strong evi
+If we see similar trends in potentiation across these four environments, that would support the hypothesis that potentiation follows predictable dynamics, that are likely to generalize to natural systems. %potentially expanding out to living systems. 
+%This combination of environments was chosen to evaluate if a shared complex feature, in this case memory usage in the associative learning and patch harvesting environments, will cause similar potentiation dynamics.
+% Why does this matter?
+% This work builds off of Chapter \ref{chap:simplfied_model}, varying only the environment and not the representation, to disentangle the effects of the two
+
+
+%In \textbf{Chapter \ref{chap:varying_environments}} I outline in-progress work we are doing on the evolution of memory use in patch-harvesting organisms. 
+%While simple patches can be consumed by purely reactive processes, more complex environments (e.g., those with multiple patches) require basic memory to consume. 
+%Specifically, we expect that organisms that consume multiple patches must be able to swap between two states: consuming a patch and finding the next patch. 
+%Did these lineages evolve simpler behaviors before evolving memory? 
+%What steps potentiated the evolution of memory, and is this similar to associative learning in Chapter 3? 
+%These are the answers my collaborators and I aim to answer. 
+
+%Chapters \ref{chap:replaying_associative_learning} and \ref{chap:varying_environments} use the Avida Digital Evolution Platform, but that is not necessary for investigating potentiation. 
+% \textbf{Chapter \ref{chap:varying_representations}} is an alternative proposal to Chapter \ref{chap:simplified_model}, in which I ask the simple question: do our previous findings on potentiation generalize beyond Avida? 
+% While Chapter \ref{chap:simplified_model} investigated this question using bitstrings on an NK landscape, here I propose to replicate the study of potentiation of memory usage in patch harvesting from Chapter \ref{chap:varying_environments} using Markov brains instead of Avidia organisms.
+% %Specifically, how does potentiation change when we switch from Avida to Markov Brains?
+% If we see similar patterns in potentiation across representations, that will be powerful evidence of general trends in how potentiation changes along a lineage. 
+% If we do \textit{not} see general patterns, that will provide evidence that, if patterns in potentiation do exist, we need to take a step back and think about them at a higher, more abstract, level.
+% Regardless of the result, expanding our studies beyond Avida is an important step in studying potentiation, and it will provide a solid foundation upon which future studies can build upon. 
+
+Chapter \ref{chap:conclusion} includes my final thoughts on this dissertation proposal. 
+I discuss my perspective on where this work fits into the existing literature and where it might lead in the future.
+Additionally, dissertations are only accepted if they are finished, %and as such it is important to have a plan for when I will complete the work that I am proposing here. 
+%Therefore, 
+so this chapter also includes a proposed timeline for when the various components of each chapter will be conducted.
+
+%All together, this thesis proposal aims to identify patterns in how potentiation changes over a lineage. 
+%Regardless of if we are able to identify general patterns in potentiation, this work will provide additional framework for thinking about, discussing, and testing potentiation as well as a basis for future comparative studies.

@@ -1,0 +1,113 @@
+\section{Conclusion}
+% Conclusion (outline)
+    % This is the first study to look into potentiation in the aggregate
+        % How does this relate to other studies? 
+            % Confirms ALife 2023 was not a fluke
+            % Provides evidence of step-function potentiation (a la Blount 2008)
+            % Other papers? 
+    % Is this applicable to natural systems? 
+        % Not directly!
+        % The methods could be employed, but this does not mean that this effect is seen in other digital systems, let alone in natural systems. 
+    % Future work
+        % Expand to other systems
+
+% General intro - what have we done here?
+Here we have conducted a study of potentiation with the largest number of analytic replay experiments to date.
+By replaying 50 lineages of digital organisms that evolved associative learning, we have provided further evidence that potentiation can increase suddenly, with strong evidence that a single mutation can result in large increases in potentiation. 
+We have also shown that potentiation can increase as a result of the co-occurrence of multiple mutations, with or without epistatic interactions. 
+Finally, we were unable to find a signal for these potentiating mutations when they appear -- as such, we are still only able to identify these mutations retrospectively. 
+
+\subsection{Limitations and applicability to other systems}
+% This system is clearly digital
+
+% We see similar dynamics in some works in natural systems
+
+% However, some works saw much smaller increases in potentiation
+% Factors: 
+%   - Simpler genetic landscape
+%   - Learning is very likely to stick around
+%       - In part because it requires very little refinement to be beneficial
+
+% Using clonal population restarts will create larger jumps in potentiation than population snapshots
+
+%
+
+In both this work and Chapter \ref{chap:learning_case_studies} we primarily investigate the potentiation of one behavior, associative learning, in the Avida digital evolution framework. 
+As such, we cannot claim that the potentiation dynamics observed in this work are globally applicable. 
+Indeed, we can only claim these results as evidence that large, single-mutation increases in potentiation are \textit{possible}, and that, in certain systems, they might be common. 
+
+While this work is among the first to explore \textit{patterns} in potentiation across many evolved lineages, it is far from the first to explore potentiation dynamics. 
+Do the results of other studies match the large increases in potentiation we observed for the evolution of associated learning in Avida? 
+In some cases it appears that short spans of evolution, and in fact even single mutations, confer substantial increases in potentiation \citep{jochumsenEvolutionAntimicrobialPeptide2016a, covertiiiExperimentsRoleDeleterious2013}. 
+These increases are not universal, as other works have seen maximum increases in potentiation substantially lower than observed here \citep{blountHistoricalContingencyEvolution2008}.
+In conducting these comparisons, however, we must consider that the sample sizes for these other works are quite low and that may bias our comparisons.
+Additionally, all replay replicates in \citep{blountHistoricalContingencyEvolution2008} evolved for the same number of generations regardless of the starting point, while we ensured that all replay replicates experienced the same number of Avida updates as the original lineage experienced after the sampled genotype appeared. 
+We would expect the former scheme to observe substantially lower potentiation in replicates founded from earlier points in the population's history. 
+Finally, it is possible that the lineages in these other studies \textit{did} see substantial increases in potentiation, but those particular changes were missed in those experiments. 
+
+% Our mutational neighborhoods are smaller, and thus any given mutation is more likely to occur
+If these potentiation dynamics truly differ, what might explain these differences? 
+While Avida has a rich and complex genetic architecture compared to many other digital evolution experiments, these digital organisms are still vastly less complex than even the most simple natural bacteria.
+An Avida organism in this work, with our original genome length of 100 instructions, has roughly 9,000 possible one-step mutations that can occur. 
+With a naive assumption that every nucleotide could mutate to any other nucleotide at every site in the \textit{E. coli} genome (\localapprox 4.6 million base pairs, \citet{blattner1997complete}), we would expect over 13 million one-step substitution mutations alone. 
+While this is only a rough estimate, it is clear that the likelihood of a particular mutation appearing is much lower in natural organisms, which can bias the potentiation changes. 
+This difference only compounds as we consider the likelihood of multiple necessary mutations arising and fixing.
+Therefore, we expect that natural organisms will typically see lower levels of potentiation for equivalent genetic distances from the focal behavior.
+
+% Learning in our system needs little refinement, and also it is a "terminal" behavior
+Additionally, there is likely a difference in how the focal behavior arises and is classified. 
+We are stringent in our system and only classify a behavior as learning if it is already well-refined, and thus even the first organism in the population to be classified as having evolved learning is likely to have high fitness. 
+In natural systems, biologists will often denote a non-trivial trait or behavior as present even if it still requires considerable refinement. 
+For example, in the \textit{E. coli} studies in the LTEE, citrate metabolism was not highly advantageous initially, but rather needed considerable refinement before it rose to prominence in the population \citep{blountGenomicAnalysisKey2012}.
+Thus, even genotypes capable of weak citrate metabolism may still have low potentiation for maintaining that trait in the longer term, as it may be lost before it is refined. 
+Follow-up work to our study should consider analyzing the potentiation of all forms of learning, including bet-hedged learning and mixed bet hedging strategies that combine learning and error correction, to see if potentiation dynamics change. 
+Further, learning is a terminal behavior in our system -- the lack of open-endedness dictates that once learning evolves, it is unlikely to be replaced with a more effective survival strategy. 
+Combined, these factors may create larger increases in potentiation, and should be dissected in future digital studies. 
+
+% Final, clonal populations vs population snapshots, population sizes
+Finally, our system uses small population sizes (3,600 organisms) compared to natural systems (which are often in excess of tens of millions of organisms), and our replay techniques may also bias the changes in potentiation. 
+By using a smaller population size, we increase the effect of genetic drift on our population and increase the likelihood that neutral or even deleterious mutations can spread before being purified. 
+In fact, by replaying populations via a full clonal population of an genotype from the dominant lineage, we are resetting all population dynamics from the potentiation measurements. 
+During normal evolution of a population, not only does a mutation need to occur, but the organism in which it resides also needs to successfully replicate at least once. 
+By using clonal populations for our replay experiments, we ensure that every mutation establishes, eliminating possible intermediate potentiation values. 
+
+\subsection{Future work}
+
+% Other analyses?
+    % Distance to focal behavior
+        % Meaningful distance to focal behavior
+    % Did the potentiating mutation exist at the time of actualization
+
+% Expanding beyond Avida and learning
+In this chapter we described our deep analysis of the potentiation dynamics behind the evolution of associative learning in Avida. 
+First and foremost, future work should investigate potentiation dynamics in a range of other systems. 
+Digital systems as simple as bitstring evolution problems could illuminate how the dynamics are affected by factors such as mutation rate and population size. 
+Slightly more complicated systems could investigate characteristics of the genetic space such as connectedness, dimensionality, mutational operators, or crossover.
+Finally, more wet-lab studies of potentiation across a wider range of environments or in a more varied selection of natural organisms can provide more real-world grounding for these results, though such systems are considerably more labor-intensive. 
+
+% Other potentiation dynamics - anti-potentiating mutations
+As we alluded to in Chapter \ref{chap:learning_case_studies}, not only are we interested in identifying mutations that substantially increase potentiation, but we are also interested in the mutations that significantly \textit{decrease} potentiation. 
+In this work we replayed ten replicates that did not evolve associative learning, to see how their potentiation dynamics differed from ``successful'' replicates. 
+Even within those ten replicates we observed one replicate that reached a height of 46\% potentiation for associative learning. 
+Extending this idea, if we have 50 replicates that evolved learning, we might expect 100 replicates to have reached 50\% potentiation but only half of them to have succeeded in that coin flip. 
+This conjures the question: do we see large decreases in potentiation similar to the increases observed in this work? 
+Are there single mutations that doom a would-be promising lineage to an ``unsuccessful'' fate? 
+For example, an immediately beneficial mutation might sweep through a population trapping it on a local optima and preventing it from following a pathway that would lead a population to higher levels of fitness.
+Identifying these anti-potentiating mutations in real time could potentially be as valuable as identifying potentiating mutations as they could allow us to slow the evolution of pathogenic or otherwise harmful populations.
+While additional studies would be needed to fully delve into these dynamics, early work should dive into this dataset. 
+When conducting replay experiments, we are effectively quantifying the potentiation of \textit{each} possible behavior. 
+Thus we have non-learning potentiation data, but analyzing this data is outside the scope of this chapter. 
+
+% Improving methods
+Finally, additional work is needed to identify techniques that reduce the cost of performing replay experiments. 
+This work has taken one step: iterating backward from the appearance of the focal behavior during the exploratory replay phase. 
+Additional optimizations could include minimizing the original number of replicates per replayed time step and then running additional replicates for those that seem interesting. 
+Finding more efficient ways of searching for potentiating steps is critical. 
+We cannot directly perform a binary search for finding the largest potentiating step, as potentiation does not increase monotonically and thus large increases in potentiation can be hidden by decreases in the same window. 
+However, there may be variations of binary search that will provide the maximum potentiating step within some margin of error or the maximum \textit{sustained} increase in potentiation. 
+In particular, using digital systems to find and verify these ideas might make future \textit{in vitro} experiments more tractable to perform. 
+
+% Conclusion
+Overall, these results provide a useful benchmark for any future projects that use replay experiments to study historical contingency. 
+As more studies of mutations are conducted, we can refine our ideas about how potentiation changes over the course of a population's history. 
+As we progress, we can leverage our understanding of potentiation dynamics to better infer what happened in the evolution of life around us, better prepare for how populations will evolve under climate change, and better leverage evolution to solve technical problems. 

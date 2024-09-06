@@ -1,0 +1,41 @@
+% Introduction
+% Succinct, with no subheadings.
+
+% What events were \textit{key} in the fall of an empire? 
+% What turns solidified your victory in that board game? 
+% What mutations were most important in the evolution of that behavior? 
+% Alas, while these are all valid questions, the sheer number of possibilities means that we will likely never know the answers. 
+% That is, unless we are talking about digital evolution, in which we have reached a point where it is computationally feasible to decypher which mutations had the largest effect on the final evolved population. 
+
+%In the natural world, we typically see the fruits of evolution's labor. 
+%Even in experimental evolution, we only see
+
+\section{Introduction}
+
+In Chapter \ref{chap:learning_case_studies} I conducted four case studies and analyzed the genetic potentiation of associative learning in the Avida digital evolution system. 
+As in the previous chapter, here I use ``genetic potentiation'' to refer to changes in the genetic background that promote the evolution of a particular trait or behavior, in this case associative learning \citep{blountHistoricalContingencyEvolution2008}.
+%In the previous chapter, 
+We found that potentiation can increase over a short period of time, including a single mutation between parent and offspring. 
+While I conducted a deep examination of the observed potentiation dynamics in Chapter \ref{chap:learning_case_studies}, I limited myself to examining only four case study lineages. 
+Here, I expand this work by again replaying the evolution of associative learning in Avida, but shifting from detailed case studies to aggregate data by analyzing the potentiation dynamics of 50 lineages. 
+
+My overall goal for this work is to provide a more comprehensive point of comparison for other studies on potentiation dynamics. 
+While several previous studies of potentiation dynamics exist, they all analyze the dynamics of only one or at most a few lineages.
+By analyzing 50 lineages, here we shift from a few data points of potentiation measurements to full distributions backed by statistically powerful conclusions. %will not have a few data points for particular potentiation measurements, but rather distribution estimates. 
+With this work, I aim to accomplish two goals: 
+1) to allow us to examine previous studies in a new light, possibly identifying trends in potentiation dynamics across systems, and 
+2) to provide a benchmark of potentiation dynamics for future studies to compare against.
+
+There are multiple, but not many, papers that directly or indirectly study potentiation dynamics in ways comparable to this work. 
+We are testing the effect of accumulated genetic backgrounds on the subsequent evolution of a particular trait. 
+Thus, we can discuss other papers that use analytic replay experiments \citep{blountContingencyDeterminismEvolution2018} to test the potentiation of a trait across different points in an evolved lineage. 
+Alternatively, we can leverage mutant studies, where experimental evolution is conducted on organisms with and without a particular set of mutations, but an otherwise identical genetic background. 
+However, we can only compare against studies that look at the binary categorical outcome of ``did X trait evolve?'' across replicates; we cannot directly compare to similar studies of continuous phenotypes or of evolvability \citep{woodsSecondorderSelectionEvolvability2011, travisanoExperimentalTestsRoles1995, wagenaarInfluenceChanceHistory2004}. 
+In practice, you can turn a continuous variable into a categorical variable (e.g., ``did the replicates evolve a size greater than $1\mu m^{2}$''), however such analysis decisions should be made before experimentation; post-hoc analysis can unintentionally inject our own bias, thus creating a statistical skew. 
+
+We find that, at both 50 lineage steps and single-step levels, potentiation for associative learning can increase substantially. 
+Further, single-step increases in potentiation are likely to be driven by a single mutation, though we do see both epistatic and non-epistatic interactions between multiple mutations to alter potentiation. 
+Finally, we compare our potentiation dynamics against other works that leverage analytic replay experiments to test the effects of actual accumulated genetic history (\citet{blountHistoricalContingencyEvolution2008}, Chapter \ref{chap:learning_case_studies}). 
+Additionally, we compare against works that examine constructed one-step mutants \citep{jochumsenEvolutionAntimicrobialPeptide2016a}, or varying levels of shared history across evolutionary replicates \citep{meyerRepeatabilityContingencyEvolution2012}.
+We find that several, but not all, of these other studies have observed similarly large increases in potentiation.
+This result provides a baseline point of comparison for future potentiation studies, both \textit{in silico} and \textit{in vitro}.

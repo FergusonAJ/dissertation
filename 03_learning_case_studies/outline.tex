@@ -1,0 +1,175 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% OUTLINE %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Intro
+    % Current:
+    % Setup - Complexity is everywhere, yet the evolutionary pathways to complexity have stumped researchers for ages
+    % General evolution of complexity background
+        % Mention the idea of neutral and deleterious mutations being beneficial in the long run
+    % Using associative learning as our example complex behavior
+        % Why choose associative learning
+        % What has been done to study the evolution of associative learning before? 
+        % List some ways its been studied
+        % However, there are still countless questions left unanswered...
+    % Introduce analytical replay experiments (and likely the rest of Zach's 2018 paper)
+        % Provide examples, preferably both digital and living
+    % What we did
+    % What we found
+
+    % Original:
+    % Is the evolution of complex features/behaviors a problem of finding a needle in a haystack, of awaiting exceedingly rare mutations that confer substantial rewards?
+    % Evolution of complexity is tricky to study, yet evolved complexity is all around us
+        % How? If evolution of complexity is so rare, how did it happen in real life or in simulated/digital situations?
+            % If only we could roll back the tape of life!
+    % Evolution of associative learning
+        % What is associative learning?
+        % Why study associative learning?
+        % Have folks tried to study it before?
+            % What challenges have they ran into?
+        % Why is this an interesting domain for this type of analysis?
+    % Analytical replay experiments
+        % What is an analytical replay experiment?
+        % Why are they useful?
+        % What have replay experiments been used for in the past?
+        % What are the limitations of replay experiments?
+            % Do those apply to digital evolution?    
+    % ? Results overview
+
+
+
+
+% Methods
+    % (sub) Evolution platform: Avida in MABE2
+        % We're using a WIP version of Avida in MABE2
+        % Avida overview - just the basics
+            % What is an organism in Avida?
+            % How does selection work in Avida?
+        % What relevant Avida settings have we used here?
+        % (subsub) Problem domain: the doors associative learning task
+            % Now that we know how selection works, what did we actually reward?
+            % How is this different from Anselmo's/Laura's work?
+                % "Backing up" is significantly easier
+                    % Why make it harder than the correct moves?
+            % Why make the change?
+                % Faster
+                % "Trims the fat" of what the organism needs to do
+                % Can randomly generate/extend maps
+            % How does the enviroment function?
+            % What information is given to the organisms?
+            % What are the organisms supposed to do?
+            % How does this all combine to require learning?
+            % What other behaviors are possible?
+    % (sub) Experiment framework
+        % The experiment framework for this work is in three phases
+            % Phase 1. Run 200 initial replicates to find learning replicates
+            % Phase 2. Run coarse-grained replay replicates for Phase 1 learning replicates to see if we have large jumps of potentiation in small windows
+            % Phase 3. Run fine-grained replay replicates for Phase 2 lineage sections of interest to see if these increases in potentation are due to a few key mutations or slow build up
+        % (subsub) Phase 1 - Initial evolution
+            % We initially ran 200 replicates
+            % They started with X ancestor and we ran them for Y updates
+            % We then analyzed those replicates to find learning replicates, which we analyzed in Phases 2 and 3
+        % (subsub) Phase 2 - Coarse-grained replays
+            % Extract dominant lineage from each learning replicate in Phase 1
+            % Run replay experiments at regular intervals along those lineages
+            % Look for large increases in potentiation over a single step for Phase 3
+        % (subsub) Phase 3 - Fine-grained replays
+            % For each replicate, identify one or two large jumps in potentiation in Phase 2
+            % Run replays for _every_ genotype in that window
+        % Classification of behaviors? Important, but not sure where to put this
+            % Could go in description of environment
+            % Could go before the phase breakdown, since it's used in all three phases
+            % Could be in Phase 1, since it is likely the shortest and it's the first time we classify seeds
+            % Could go after phase descriptions, as its own thing
+        % (subsub) Mutation-based landscape analysis?
+            % At this point, I'm not sure if this will be important enough to breakdown in its own subsubsection
+    % Software and Data Availability
+        % Do we even have statistics? 
+        % Scaped data is available <github/osf?>
+        % All source code, configuration settings, and analyses tools available on GitHub
+            % I have to remember to allot enough time for this
+    
+% Results
+    % (sub) Phase 1 results
+        % 16 / 200 replicates evolved learning
+        % 140 / 200 replicates evolved error correction
+        % 44 / 200 replicates did something else
+        % Note the two replicates that saw learning along the dominant lineage but it didn't stick around?
+    % Case study A - seed 86
+        % Summary of exploratory replays
+        % Two potentiating mutations: 432 and 484
+            % Still not sure about 432
+            % Full explanation of 484
+                % Neutral
+        % Notes: 
+            % Potentiation appears to stay fairly consistent outside of a few major jumps
+            % It looks like potentiation _decreases_ between the two potentating mutations
+    % Case study B - seed 4
+        % Summary of exploratory replays
+        % Potentiating mutation at 104
+            % Less of a jump
+            % Potentiation appears to increase slowly before and after
+            % Tons of mutations between 104 and learning. Can only hypothesize
+            % Beneficial
+    % Case study C - seed 6
+        % Summary of exploratory replays
+        % Targeted replays are a mess
+            % Generally trending up after a while
+            % Really hard to tell what's noise vs repeated peaks and troughs
+            % Potentiating mutation at 548
+                % Shifts behavior for one step
+                % Neutral
+                % Not sure what's going on here
+                    % An IfLess was inserted, and it DOES get leveraged for the first time at the learning step
+                        % But no idea why it matters yet
+            % Can we identify the peak a few steps before at 542 & 543?
+            % Learning here isn't that different, error correction is only a rough classification
+    % Case study D - seed 15
+        % Summary of exploratory replays
+            % Gentle increase before our targeted replays
+            % Potentiation mutation at 279
+                % Changes behavior
+                % Deleterious 
+                % Somewhat normalizes what was very unbalanced bet-hedged learning
+                    % Actually does normalize in the next couple mutations (280/281)
+                % Next, org can suddenly hand forward->left state combos
+                % Some tradeoffs at 289 and 296, best environments swap around
+                    % All struggling with two lefts in a row 
+                % Finally, learning appears at 305 when two lefts can be handled in all environments
+
+% Discussion
+    % Potentation can arise suddenly
+        % 4/4 case studies have one major potentiating mutation
+            % Increases in potentiation ranges from 36% to 64%
+    % Potentiating mutations show no widely-applicable generalizable features
+        % One beneficial, two neutral, one deleterious
+        % Time before learning varies significantly
+        % Mechanistic effect of mutations hard to pin down / not obvious
+    % 
+    
+% Conclusion
+    % Future work
+        % Do this analysis, but at a scale that we can get aggregate data
+        % Different substrates
+        % Different tasks
+        % Why only look at large _increases_ in potentiation? What's going on with the _decreases_?
+        % What's going on with the lineages that _don't_ evolve learning?
+        % Is sampling 50 replicates enough? 
+            % Are we missing interesting trends?
+            % Are we reading too much into noise?
+        % We could also track phylogenies on the replays
+            % How closely do replay lineages match to the original lineage?
+
+
+% Really struggling on how to spin the intro
+    % There are two sides to this coin: A) If this is a chapter in my dissertation, we need to take care that it fits in well and B) This should not be at the expense of making it the best, most coherent paper we can in its own right
+        % But it's still not 100% clear what my dissertation will be. It'll be reactive plasticity -> early learning, but small details can shift it quite a bit
+    % Two main approaches:
+    % 1. 
+        % We could center the evolution of learning and then introduce analytical replay experiments as a way of looking into learning
+    % 2.
+        % Or we could center historicial contingency and then give associative learning as our example complex behavior
+    % In some ways, we want the best of both worlds
+        % Dissertation is looking at the jump from reactive plasticity -> early learning/cognition
+            % However, the role of historical contingency is shaping up to be the biggest chunk
+                % 2 of N chapters

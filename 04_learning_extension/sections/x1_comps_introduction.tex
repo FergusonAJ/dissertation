@@ -1,0 +1,42 @@
+\section{Introduction and Background}
+
+% Set the background -- what could be built upon previous work and chapter 2? More replicates needed
+Previous experimental evolution studies in microbial systems (as summarized in \cite{blountContingencyDeterminismEvolution2018}) have demonstrated that analytic replay experiments can show how potentiation for a particular trait changes over the course of a lineage \citep{blountHistoricalContingencyEvolution2008, meyerRepeatabilityContingencyEvolution2012, jochumsenEvolutionAntimicrobialPeptide2016a, woodsSecondorderSelectionEvolvability2011}.
+These experiments typically focus on, at most, a few lineages. 
+This limitation is shared by Chapter \ref{chap:alife_submission} of this dissertation proposal, which focuses on the potentiation of associative learning in four case study lineages.
+While these four lineages provided me with examples of what is possible in terms of potentiation, the small sample size leaves me unable to extract generalizations.
+
+% How do we fix it? Run more data
+Here I propose to expand these techniques to look at potentiation more systematically  \textit{across many additional replicates}. % to look for general patterns. 
+By leveraging the associative learning environment and replay experiment pipeline introduced in Chapter \ref{chap:alife_submission}, I plan to scale up this study by replaying genotypes from at least fifty associative learning lineages.
+This larger scale will provide me with enough data to identify patterns in how learning becomes potentiated in this system, and allow me to propose hypotheses about underlying evolutionary processes. 
+
+% What's the hang up? Why not just do this for Chapter 2?
+The biggest challenge that I faced in Chapter \ref{chap:alife_submission} was one of CPU limitations; each replay run required substantial computational effort.
+Specifically, each lineage studied required 20 starting points for the initial scan and at least 49 additional starting points once the potentiation window was identified.  
+For each of these 69 starting points, I performed 50 replicate runs, for a total of 3450 Avida runs per lineage analysis.
+The limited number of replay experiments was satisfactory for an initial exploration, but now that I have identified the required data and worked out which analyses will be the most informative, a larger scale study is clearly warranted.
+
+In the preliminary data, I saw some lineage regions where potentiation jumped sharply with a single mutation, while potentiation grew more gradually in other regions.
+Indeed, some regions actually show a decline in potentiation.
+While I continue to believe that the large jumps in potentiation will be the most interesting to study (and to tease apart the underlying source of the potentiation change), investigations in these other regions may also prove fruitful.
+To that end I plan to conduct a small number of additional analyses on ten replicates that did not achieve associative learning.
+In these replicates I will examine overall potentiation patterns, with an emphasis on both jumps and drops.
+
+The Avida genotype-phenotype map is known to be complex \citep{fortunaGenotypephenotypeMapEvolving2017}, with many different types of epistasis coexisting.
+Many different factors could come into play that promote or restrain the evolutionary potential toward a complex task.
+My hypothesis is that large jumps in potentiation will be due to these epistatic interactions.
+In the same way, epistasis could trap lineages in a region of genotype space where learning is effectively unreachable.
+As such, I also hypothesize that in lineages that fail to evolve learning, we will often see drops in potentiation that mirror the jumps evident in my prior work.
+
+
+%Is the pattern of potentiation unique to each individual lineage, or are there common themes across different replicates? 
+% Does every lineage have a unique history of potentiation, or are there general patterns across different replicates?
+% This is the question I propose to explore in this chapter. 
+% Previous work in Chapter \ref{02_alife_submission} has provided evidence that some aspects of potentiation, such as large jumps in potentiation due to a single mutation, may be common across multiple lineages. 
+% However, other aspects, such as the slow accumulation of potentiation outside the main potentiating mutations, seem to differ between lineages. 
+% This work simply aims to generate more data so we can begin to ask these analyze these patterns in earnest. 
+
+%Using analytic replay experiments to study potentiation is a relatively new idea, and while we cannot enumerate every study that employs them, we can analyze what is certainly the majority. 
+%Of these studies, N run replays on a single lineage \citep{blountHistoricalContingencyEvolution2008, vignognaExploringLocalGenetic2021}, while X, Y, and Z did other stuff. 
+%While several studies have now used analytic replay experiments to study potentiation, 

@@ -1,0 +1,132 @@
+% Materials and methods
+% This section may be divided by subheadings and should contain sufficient detail so that when read in conjunction with cited references, all procedures can be repeated.
+
+\section{Methods}
+
+\subsection{The Avida Digital Evolution Platform}
+\label{sub-avida}
+% What are we using and why?
+The analytic replays used in this work required speed, analysis, and data tracking at levels currently intractable in populations of natural organisms, even in laboratory settings.
+Therefore we used the Avida Digital Evolution Platform to conduct these experiments \citep{ofriaAvidaSoftwarePlatform2004a}.
+Specifically, we used the fifth version of Avida, which is currently being developed as a part of the Modular Agent-Based Evolver 2 (MABE2) software [CITE].
+
+% High level of what's going on in Avida
+Avida organisms are self-replicating computer programs that compete for CPU cycles. 
+As experiment designers, we create rewards that will be given to organisms when they complete certain tasks (see section \ref{subsub:avida:learning} for details).
+The amount of reward that an organism has accumulated, which we call the organism's \textit{merit}, is compared against the merit of the rest of the population to determine how many CPU cycles each organism will receive. 
+Since the organisms replicate themselves, a selective pressure emerges for the organisms to accumulate enough merit to replicate faster than their peers. 
+
+% More detail about genomes and instructions
+An organism's genome is a sequence of simple instructions which resembles assembly code. 
+When an Avidian is granted a CPU cycle, the next instruction in its genome is executed. 
+These instructions are computationally simple; they range from performing basic math to controlling the flow of execution itself. 
+Experiments in Avida can also use custom instructions that change how the organisms interact with data, the environment, or even each other. 
+For this work, we used an extended version of the standard Avida instruction set that was furhter supplemented with environment-specific instructions [CITE supplement?]. 
+
+% How reproduction works, mutation rates, world setup
+% TODO: death age
+The instruction set we used allowed the organisms to reproduce via a single \texttt{Repro} instruction, which is a relaxation of the ``copy loop'' required in many earlier experiments [CITE].
+However, to ensure that organisms interacted with the environment and did not just optimize to reproduce as fast as possible, we required organisms to execute 1,500 instructions before they could reproduce (before then the \texttt{Repro} instruction did nothing). 
+When the organism reproduces, a copy of its genome is made and subjected to mutations. 
+Each site in the genome has a 0.75\% chance of experiencing a point mutation, while the whole genome has a 5\% to insert or delete (independently) an instruction. 
+Once the new genome has been created and possibly mutated, it is placed in the grid as an offspring organism. 
+In this work, we used spatial reproduction, so the world is a 60x60 toroidal grid and offspring are placed in one of the eight cells adjacent to the parent organism. 
+Finally, we also reset the parent organism back to an initial state after reproduction, but we do not mutate it. 
+
+\subsubsection{Associative Learning in Avida}
+\label{subsub:avida:learning}
+
+% Introduce associative learning and previous work
+While Avida has been used to study various behaviors in the past, here we focus on the evolution of associative learning.
+%Specifically, we reward organisms for associating environmental cues with the appropriate actions. 
+%Following the lead of \cite{pontesEvolutionaryOriginAssociative2020} and \cite{fergusonPotentiatingMutationsFacilitate2023}, this is done via a path-following task. 
+Specifically, we follow the lead of \cite{pontesEvolutionaryOriginAssociative2020} and \cite{fergusonPotentiatingMutationsFacilitate2023}, which both showed that rewarding organisms that associate nutrient cues with the steps needed to follow a path is sufficient to evolve associative learning, though the evolution of learning is rare. 
+Here, we expand upon this path-following task, evolving organisms that learn in environments with no guarantees. 
+
+% Introduce the states
+While Avida organisms exist and reproduce on a two-dimensional toroidal grid, they are evaluated in a separate environment. 
+In this environment, the organism exists in one of four states, three that are valid (\textit{i.e.}, on the path), and that is invalid (\textit{i.e.}, off the path). 
+The valid states correspond with the next move needed to traverse that path, either 
+``move forward'', ``turn left'', ``turn right''. 
+The invalid state is a general ``off path'' state. 
+
+% Introduce the instructions and how they relate to states
+We give organisms access to four new instructions, one for each state (\texttt{MoveForward}, \texttt{MoveBackward}, \texttt{TurnLeft}, \texttt{TurnRight}).
+If the organism is in a valid state, executing the correct instruction will put them in a new randomly-generated valid state.
+Executing the wrong instruction will instead place them in the invalid state. 
+If the organism is in the invalid state, executing the \texttt{MoveBackward} instruction will place them in the most recent valid state they were in (\textit{i.e.}, organisms only ever need to execute one backward move to end up back on the path). 
+
+We also grant organisms access to one final instruction: \texttt{Sense}. 
+Executing this instruction will place an integer cue that represents the current state in one of the organism's registers. 
+The ``move forward'' state is always represented by a cue of zero and the ``off path'' state is always a cue of negative one. 
+However, the turn states are represented by random integers in $[1, 10^{6}]$. 
+Organisms can encode decision processes using the two fixed cues in their genomes, but the two random cues cannot be genetically encoded.
+Optimal fitness thus requires organisms to \textit{learn} at least one of the random cues. 
+
+Truly optimal performance requires the organism to learn to differentiate the two turn cues with at most one error, as the first turn is a 50\% chance due to the random cues. 
+An optimal organism would then observe if they were correct or incorrect and use that to perfectly follow the remainder of the path. 
+
+\paragraph{Classification of behavior}
+\label{subsubsub:avida:learning:classification}
+
+While optimal learning is easy to identify, our classification of learning was slightly more lenient. 
+To begin identifying a genotype, we ran it for 100 trials in the associative learning environment. 
+We classified each trail independently, and then used the collection of trial classifications to classify the genotype itself. 
+%We then classified each of those trials. 
+%Once all trails were classified, we classified the genotype. 
+
+A single trial was classified as optimal learning if it had greater than 98\% accuracy and made at most two mistakes. 
+Relaxing those constraints, we classified a trial as suboptimal learning if it had greater than 90\% accuracy. 
+Any trials that saw at most one error in one of the turn states but many errors in the other were classified as error correction, as the organism follows a simple heuristic but is able to correct itself when that heuristic is incorrect (\textit{e.g.}, always turn left at an unknown state, if incorrect move backward and turn right). 
+Finally, we classified trials as invalid if they experienced fewer than 25 valid states, saw twice as many invalid states as valid ones, or failed to correct an invalid state. 
+
+With the trials classified, we used those labels to classify the genotype itself. 
+To be classified as a learning genotype, all 100 trials must have been classified as either optimal or suboptimal learning. 
+Similarly, all trials were required to be error correction for the genotype to be classified as error correction. 
+If some trials were classified as learning and others as invalid, the genotype was classified as bet-hedged learning; similarly for bet-hedged error correction. 
+Mixed bet hedging was assigned to those genotypes that saw at least one trial of learning and one trial of error correction. 
+Finally, genotypes with 100 invalid trials were deemed ``low activity''.
+
+
+\subsubsection{Analytic Replays and Potentiation in Avida}
+% Two major changes: 
+%   1. We are running the exploratory replays starting from the first genotype learning evolved, and we are moving backward 50 steps until we reach a point where learning was rare
+%   2. We are seeding replays with a monoclonal population, not a single org
+\label{subsub:avida:replays}
+Replays were conducted as in \cite{fergusonPotentiatingMutationsFacilitate2023} but with minor differences.
+As in the previous work, we conducted the replays by first extracting the ``dominant lineage'' of the initial evolutionary replicate, which is the genotypic lineage from the ancestor to the most abundant genotype at the end of the replicate. 
+With this lineage in hand, we then conducted two batches of replays: exploratory replays and targeted replays. 
+
+For every genotype that we replayed, we seeded 50 new evolutionary replicates with that genotype and gave them the a number of Avida updates such that the whole lineage (before and during the replay) saw the same number of updates as the initial replicate. 
+While our previous work seeded these populations with exactly one copy of the genotype, here we seeded replays with an entire population (3,600 organisms) of that genotype to prevent the early extinction we previously observed. 
+Since we were examining the evolution of associative learning, we calculated the potentiation of each genotype we replayed as its fraction of replays that evolved associative learning, giving potentiation a range of $[0, 1]$. 
+
+The other major difference from the previous work is how we selected genotypes for the exploratory replay phase.
+We started our exploratory replays at the first genotype in the lineage to exhibit learning and then stepped backward along the lineage. 
+We seeded replay experiments every 50 steps backward until a replay had less than 20\% of its replicates evolve learning. 
+This 20\% threshold was chosen to ensure we only ran a reasonable number of exploratory replays, and the results of \cite{fergusonPotentiatingMutationsFacilitate2023} led us to believe that the largest single-step increases in potentiation will often (but not always) increase potentiation by at least 20 percentage points and thus will fall in our observed window. 
+
+Targeted replays were conducted much the same as in previous work. 
+For each replicate, we analyzed the exploratory replays and identified the 50-step window that had the largest increase in potentiation, which we call the potentiation window. 
+We also looked at the neighboring windows; if they had a similar jump in potentiation (greater than or equal to 90\% of the initial window and greater than 10 percentage points of gain overall) we then combined them, making one larger potentiation window. 
+Once the full potentiation window had been identified, we seeded replays with \textit{every} genotype within that window. 
+
+% First, instead of sweeping the early updates with exploratory replays, we started exploratory replays at the first genotype along the dominant lineage that performed learning.
+% From there, we traversed the lineage backward, starting a new batch of exploratory replays every 50 steps backward along the lineage. 
+% We continued until a particular step in the lineage was at 20\% or less potentiation. 
+% Second, instead of seeding replay populations with one copy of the focal genotype, we switched to full monoclonal populations with that genotype. 
+% This was to prevent situations where the early stages of the population went extinct. 
+
+
+\subsection{Experimental Design}
+\label{sub:experiment-design}
+Since the main goal of this work was to identify general trends in the potentiation of associative learning in Avida, we needed a sizable number of lineages that evolved associative learning. 
+To do this, we ran many batches of initial evolutionary replicates that were founded with a default ancestral genotype that is only capable of reproducing itself. 
+We ran these initial replicates in batches of 500 until we reached a quota of 50 replicates that evolved associative learning, running 4,000 initial replicates in the end.
+All analyses, unless noted otherwise, were performed on all 50 of these lineages. 
+
+\subsection{Analysis}
+\label{sub:analysis}
+
+\subsection{Software Availability}
+\label{sub:software}

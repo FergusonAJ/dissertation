@@ -1,0 +1,159 @@
+%%% Define the actual document parameters:
+% as of Dec 2022, formatting guide requires margins be "consistent on all sides"
+% i.e., use oneside
+\documentclass[oneside,11pt,letterpaper,openany]{report}
+
+
+%%%  Include packages used throughout the dissertation:
+\input{x0_supporting_files/packages}
+
+%%% Load all the setup code, which was originally in this file
+\input{x0_supporting_files/setup}
+
+%%%  Include any definitions you wish to use throughout the dissertation
+%%%  If you want to add helper functions, I recommend you do it here -- @AJF
+\input{x0_supporting_files/definitions.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%  Begin the actual dissertation:
+\begin{document}
+\raggedbottom
+\sloppy
+\pagenumbering{roman}
+\pagestyle{empty}
+\setlength{\parindent}{2 em}
+
+%\layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Title page ==
+% This should be self contained unless you need to edit the degree
+% Name and title are defined in x0_supporting_files/definitions.tex
+\input{00_prelim/00_title_page.tex}
+\null\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Abstract ==
+% Loads from text from 00_prelim/abstract.tex
+\begin{doublespace}
+\centerline{\textbf{ABSTRACT}}
+\input{00_prelim/01_abstract.tex}
+\end{doublespace}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Copyright page ==
+% Should be self contained in 00_prelim/02_copyright_page 
+\vspace*{\fill}
+\input{00_prelim/02_copyright_page}
+\newpage
+
+%%% Set the page numbering scheme:
+% as of Dec 2022, roman page numbering must begin on the dedication page
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Dedication ==
+% Edit via 00_prelim/03_dedication.tex
+\vspace*{\fill}
+\begin{hyphenrules}{nohyphenation}
+\begin{center}
+\input{00_prelim/03_dedication.tex}
+\end{center}
+\end{hyphenrules}
+\vspace*{\fill}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Ackowledgments ==
+% Edit via 00_prelim/04_acknowledgemnts.tex
+\begin{doublespace}
+\centerline{
+\textbf{ACKNOWLEDGEMENTS}
+}
+\input{00_prelim/04_acknowledgements.tex}
+\end{doublespace}
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Table of contents ==
+% As of 2023, only the chapter titles are required
+% And MSU "strongly recommends" to keep the TOC as simple as possible
+% I find this boring :( - @AJF
+\begin{hyphenrules}{nohyphenation}
+\setcounter{tocdepth}{0}
+\tableofcontents %
+\end{hyphenrules}
+
+\newpage
+
+%%%  List of tables as of 2022 this is no longer required or encouraged by the graduate school
+%%%  List of figures as of 2022 this is no longer required or encouraged by the graduate school
+
+
+%%%  This concludes the mandatory formatting for a dissertation.
+%%%  Now, reset the page counter, and use arabic numerals for the remainder:
+\setcounter{page}{1}\pagenumbering{arabic}
+%%%  Last few formatting commands:
+\begin{doublespace}
+%% Change this for spacing:
+%\onehalfspacing
+\linespread{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Research chapters ==
+%%% Use format: \include{<file here>(No Extension)}
+
+\include{01_introduction/main}
+\include{02_consequences_of_plasticity/main}
+\include{03_learning_case_studies/main}
+\include{04_learning_extension/main}
+\include{05_adaptive_momentum/main}
+\include{06_conclusion/main}
+
+% Example for splitting the thesis into a few parts (I don't use this -- AJF)
+% \part{Designing Computational Infrastructure to Enable Scalable Digital Multicellularity Experiments} \label{part:infrastructure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Bibliography ==
+% Make sure we're linking to the correct page... https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering
+\clearpage
+\phantomsection
+\begin{singlespace}
+\addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
+\renewcommand{\bibsection}{\centerline{\textbf{BIBLIOGRAPHY}}}
+\bibliographystyle{apalike}% your bst file here
+\bibliography{ferguson_dissertation, supplements} %your bib file here
+\end{singlespace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% == Appendices, if necessary ==
+% Make sure we're linking to the correct page... https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering
+\clearpage
+\phantomsection
+\appendix
+\renewcommand\chaptername{APPENDIX} % I was asked to make this all caps - AJF
+% ensure appendix chapters are labeled appendix instead of chapter in toc
+% adapted from https://tex.stackexchange.com/a/56845
+% see also https://tex.stackexchange.com/a/50037
+
+\begin{filecontents}{toc-chapter-to-appendix.tex}
+%\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}}
+% https://latex.org/forum/viewtopic.php?t=11871, remove appendix title - AJF
+\addcontentsline{toc}{chapter}{APPENDIX}
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\end{filecontents}
+\include{toc-chapter-to-appendix.tex}
+
+% Remove Appendix letters (e.g., Appendix A -> Appendix)
+% This was requested as I only have one appendix "chapter" - AJF
+% https://tex.stackexchange.com/a/21320
+\renewcommand\thechapter{}
+\renewcommand\thesection{\arabic{section}}
+%%% Use format: \include{<file here>(No Extension)}
+\include{07_appendix_potentiation_over_time/main.tex}
+
+\end{doublespace}
+\end{document}

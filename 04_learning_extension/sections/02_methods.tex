@@ -1,0 +1,151 @@
+% Materials and methods
+% This section may be divided by subheadings and should contain sufficient detail so that when read in conjunction with cited references, all procedures can be repeated.
+
+% Methods
+    % Mostly the same as Chapter X
+    % Changes to associative learning task
+        % Fully random paths
+        % Did we change the fitness exponent? (Yep, 1.25 -> 2)
+        % Did we change how exit resets work? (Doesn't look like it)
+    % Changes to replay framework
+        % We now start at learning and work backward
+        % Full population restarts instead of single org
+        % Strict definition of the target window
+    % Experiment design
+        % Ran batches of 500 replicates until we hit 50 learning replicates
+            % This took 4,000 replicates
+        % For each of the 50 learning replicates:
+            % 1. Run exploratory replays
+            % 2. Identify targeted window
+            % 3. Run targeted replays
+            % 4. Analyze -- find potentiating step
+            % 5. Run single-step mutational neighborhood
+            % 6. Run mutation splits
+        % Replay 10 non-learning replicates as a control
+            % Only to the exploratory replay level
+                % Record max potentiation gain / loss per window
+        % Non-learning replicates?
+
+\section{Methods}
+
+% Overview -- this is mostly the same as the ALife paper
+This work extends the study described in Chapter \ref{chap:learning_case_studies}. 
+As such, most of the methods remain the same. 
+At the core of these studies, we use the Avida digital evolution platform \citep{ofriaAvidaSoftwarePlatform2004a} to evolve digital organisms capable of simple associative learning in a path-following domain.  
+Here we provide a brief outline of the methodology, highlighting areas where the methods differ from the previous chapter. 
+All code, configuration scripts, and summarized data are available online \citep{fergusonFergusonAJReplayingEvolution2023}.
+
+\subsection{Initial evolutionary replicates}
+
+% How many replicates did we run?
+First, we evolved populations capable of associative learning to provide lineages for us to replay. 
+In order to accumulate 50 ``learning replicates'' (i.e., replicates that were capable of performing associative learning at the end of evolution), we ran batches of 500 replicates until we reached 50 learning replicates. 
+This required 8 batches or 4,000 replicates total, for an ultimate success rate of $1.25\%$. 
+
+% General Avida info -- mutation rate, pop size, etc.
+The main details of these initial replicates were identical to Chapter \ref{chap:learning_case_studies}.
+We started each replicate with a single Avida organism capable only of reproducing itself, and we capped the population size at 3,600 organisms by using a 60x60 grid for our population. 
+We again evolved each initial replicate for 250,000 Avida updates and then identified a representative genotype -- the most abundant genotype at update 250,000 -- and extracted the genotypic lineage leading to it from the original ancestor. 
+We used this lineage from each replicate to perform our replay analyses. 
+Mutation rates were kept the same as the previous study: per-site substitution mutations occurred at a rate of 0.0075, while insertion and deletion mutations occurred independently at a rate of 0.05 per reproduction event. 
+Organisms  were again able to replicate themselves via the \texttt{Repro} instruction, but they were still required to execute 1,500 instructions before being allowed to reproduce. 
+
+% Re-introduce path following environment
+We evaluate the organisms on the same path-following task as the previous chapter. 
+At each step in the path, we provided the organisms with an integer cue indicating which action they should take to maximize their fitness (move forward, turn left, turn right, or move backward). 
+Organisms must interpret the current cue and execute the correct action, with each action being a single, atomic instruction that we added to the Avida instruction set. 
+The ``turn left'' and ``turn right'' cues, however, have randomized values for each organism evaluation, and as such organisms must associate the cue values with the correct actions during their lifetimes (i.e., they must encounter the cues, empirically determine their meaning, and remember them) to perform optimally. 
+
+% What changed between that chapter and this one
+This path-following environment is the same as in Chapter \ref{chap:learning_case_studies} with two exceptions: 
+
+% Random paths
+First, Chapter \ref{chap:learning_case_studies} used the pre-defined paths from \citep{pontesEvolutionaryOriginAssociative2020}, where each organism was placed on one of four ``one fixed turn'' paths. 
+This configuration guaranteed that organisms would always encounter the \textit{left} cue before the \textit{right} cue. 
+For this follow-up work, however, we placed all of the organisms on completely random paths. 
+We have thus removed the guarantee of seeing one cue before the other, substantially increasing the difficulty of the learning task.  
+
+% Fitness/merit calculations
+Second, we have refined the definitions of metabolic rate and fitness.
+An organism's score is calculated the same way as before: organisms gain a reward of $+1$ for each correct movement and a $-1$ for each incorrect movement. 
+Metabolic rate, however, is now calculated as $2^{score}$ instead of $1.25^{score}$.
+This new calculation means that each additional correct movement doubles metabolic rate and each incorrect movement halves metabolic rate. 
+This change creates a steeper gradient -- increasing performance will result in much higher metabolic rate (and thus fitness), but this also makes performance decreases much more deleterious. 
+While metabolic rate is used for determining how often an organism executes instructions during the evolutionary run, here we calculate fitness specifically as metabolic rate divided by the reproduction time of the organism -- thus organisms can increase their fitness by improving performance or by reproducing faster. 
+
+\subsection{Exploratory replays}
+
+% Replay overview -- what are they and our two levels
+As in Chapter \ref{chap:learning_case_studies}, our goal is to identify how the genetic potentiation of learning changes over evolution, as evidenced by the course of the focal lineages. 
+To accomplish this, we split our analyses into two types of analytic replay experiments \citep{blountContingencyDeterminismEvolution2018}: 
+1) exploratory replays that provide a coarse-grained overview of how potentiation changes over a lineage and 
+2) targeted replays that identify individual ``potentiating'' steps in a lineage. 
+To calculate the potentiation level for associative learning in a given genotype, we simply replayed evolution from that genotype 50 times and recorded the percentage of replicates that evolved associative learning. 
+We maintained the same stopping criterion for all replays: evolution would end after a lineage experienced 250,000 total updates (\textit{e.g.}, for a genotype that appeared at update 150,000, replays would evolve for the remaining 100,000 updates). 
+
+% Change in how we seeded the replays
+In the previous work, replay replicates started from a single organism -- the genotype along the lineage whose potentiation we were measuring. 
+However, this technique resulted in a few replay replicates that went extinct for various reasons, such as being unable to reproduce if a specific cue sequence was encountered. 
+Here, replays again consisted of 50 evolutionary replicates, but this time we started each replay replicate with a full clonal population of the genotype being tested. 
+This change resulted in all replay replicates completing normally, and has the side effect of reducing the potential for adaptive momentum in our replay replicates (Chapter \ref{chap:adaptive_momentum}).
+
+% Change in how we did our exploratory replays
+We conducted exploratory replays for all 50 replicates that evolved learning.
+Here we began our exploratory replays in the same way as before: we identified the step in the lineage that first exhibited learning and replayed that genotype.
+In Chapter \ref{chap:learning_case_studies}, we then started at the ancestral genotype and replayed every 50th step in the lineage until we reached this first learning genotype. 
+Here, after replaying the first learning phenotype, we then iterated \textit{backward}.
+We would take 50 steps backward (toward the ancestor) along the lineage and run another batch of replay replicates. 
+We repeated this process until we reached a genotype that resulted in potentiation $\leq 20\%$.  
+The results of the previous chapter demonstrated that this backward traversal would likely capture the largest increases in potentiation, as all four increases were greater than 20 percentage points. 
+Therefore, the only way that we would miss the largest increase in potentiation would be if there was substantial gain in potentiation followed by substantial loss, which we saw no support for in the previous chapter. 
+This scheme allowed us to avoid replaying the earliest genotypes in the lineage, and since they would have taken the longest to run (more updates per replay), this change substantially reduced the computational resources needed to conduct our exploratory replays. 
+
+% Non-learning replicates
+In addition to our 50 learning replicates, we ran exploratory replays for ten replicates that did not evolve learning. 
+We replayed two randomly-sampled replicates for each of the other five final behaviors (bet-hedged learning, error correction, bet-hedged error correction, mixed bet hedging, and low activity). 
+As these replicates never evolved learning, we resorted to conducting exploratory replays as in Chapter \ref{chap:learning_case_studies}: starting at step 50 in the lineage, we replayed every $50^{th}$ step along the lineage. 
+These non-learning replicates were replayed to give us a baseline of how potentiation might change in ``unsuccessful'' replicates. 
+We recorded both the potentiation of learning and the potentiation for the other behaviors in these additional replicates. 
+
+% Statistics
+For each replicate (both learning and non-learning), we found the 50-step window with the largest gain in potentiation. 
+We then conducted a two-tailed Fisher's exact test between the potentiation before and after this window to determine if the potentiation gain of the window was significant. 
+
+\subsection{Targeted replays}
+
+% Overview of targeted replays
+As in the previous chapter, after conducting our exploratory replays we used that data to go a step further: replaying individual lineage steps. 
+The goal of these targeted replays was to identify the ``potentiating step'' -- the parent-offspring step in the lineage that conferred the largest increase in potentiation. 
+
+% Identification of target window
+The exploratory replays provided insight into how potentiation changed over 50-step windows, and we used this information to construct a set of windows for targeted replays. 
+Our goal was to capture as much potentiation gain as possible while remaining computationally feasible. 
+We initialized the set with the 50-step window with the largest potentiation gain as identified by the exploratory replays. 
+However, Chapter \ref{chap:learning_case_studies} showed that there are occasionally multiple windows (usually adjacent) that have similar increases in potentiation, so the potentiating step could be in one of these other windows.  
+To catch these instances, before conducting targeted replays we recursively examined the windows adjacent to the those in the selected set.
+If an adjacent window had $\geq 90\%$ of the potentiation gain of the maximum per-window gain, and the final potentiation of the window was above 10\%, we then added this window to our set.
+Of the 50 replicates, the set contained only one window for 46 replicates, and the other four replicates contained exactly two windows. 
+
+% Overview of what this gives us and stats
+We then conducted targeted replays by running 50 replay replicates for every genotype in the selected set.
+The ``potentiating step'' was then identified as the step in the lineage with the largest absolute increase in potentiation from the previous step. 
+%Indeed, this maximum per-step potentiation gain was calculated for each of the 50 learning lineages. 
+Similar to the exploratory replays, we found the potentiating step for each of the 50 learning replicates and then tested the significance of the potentiation difference. 
+We again performed a two-tailed Fisher's exact test, this time between the potentiating step and the step before it in the lineage. 
+
+\subsection{Post-replay analyses}
+
+% Additional analyses
+After conducting the targeted replays and identifying the maximum potentiating step  of each lineage, we then conducted two additional analyses to further disentangle the details of each potentiating step. 
+
+% Fitness effect analysis  
+First, we re-analyzed the genotypes just before and just after the potentiating step in each lineage.
+For each pair of genotypes, we evaluated them on the same set of 100 paths. 
+This allowed us to perform a paired Wilcoxon test to look for significant differences in fitness between the original genotype and the mutant.
+Since fitness effects (e.g., beneficial, deleterious, slightly deleterious, etc) are often loosely defined, this technique allows us to discuss these fitness differences in terms of significance and effect size, while making it possible to cleanly identify mutations that have exactly zero effect on fitness.
+
+For the second analysis we analyzed the replicates with more than one mutation in the potentiating step. 
+By calculating the edit distance \citep{wagnerStringtoStringCorrectionProblem1974} between the genotypes before and after the potentiating step, we isolated the $N$ mutations in the potentiating step. 
+With the individual mutations identified, we ran 50 replay replicates for each of the $2^N$ possible combinations of mutations for replicates where $N>1$. 
+We then applied a logistic regression model to test the significance of the contributions for the mutations and all possible interactions.
+This analysis allows us to identify whether the potentiation gain was driven by one of the $N$ mutations or by a combination of mutations. 

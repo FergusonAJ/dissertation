@@ -1,0 +1,143 @@
+\section{Introduction}
+
+% Innovations in science and technology periodically create opportunities to conduct experimental studies that were previously relegated to the realm of thought experiments. 
+% This shift occurred with Stephen Jay Gould's idea of ``replaying the tape of life'' -- starting evolution over again to see if we would arrive at similar outcomes \citep{gouldWonderfulLifeBurgess1990}. 
+% Previous researchers have brought this thought experiment into reality by leveraging microbial populations that can be frozen and then revived \citep{blountContingencyDeterminismEvolution2018} or digital populations that can be saved and loaded at will \citep{fergusonPotentiatingMutationsFacilitate2023}.
+% By restarting evolution from different time points in an evolved population's history, researchers have begun to formalize \textit{analytic replay experiments} to test hypotheses on historical contingency.
+% %Researchers have begun to leverage these \textit{analytic replay experiments} and the evolutionary counterfactuals they generate to test hypotheses on historical contingency.
+% %Researchers have begun to leverage \textit{analytic replay experiments} where populations are restarted from particular time points to generate evolutionary counterfactuals and test hypotheses on historical contingency.
+% Below we explore how these techniques can be expanded to develop a deeper understanding of evolutionary dynamics, in this case exploring the concept of ``adaptive momentum''.
+
+% \subsection{Replay Experiments and Evolutionary Prediction}
+
+% Traditional evolutionary biology is often focused on improving our ability to predict evolutionary outcomes or understand why evolutionary history played out the way it did.
+% Prediction can be especially difficult in light of complex fitness landscapes with epistatic interactions, meaning that the result of mutational combinations cannot always be known based on individual effects.
+% %, where one mutational event can change the impact of others, sometimes even making would-be deleterious mutations into beneficial ones.
+% %Given the speed of modern digital evolution systems, however, we are able to shift from trying to simply predict evolution to empirically measuring the range and distribution of possible outcomes.
+% Given the speed of digital evolution, however, we do not always need to predict evolutionary trajectories; we can often empirically measure the range and distribution of possible outcomes.
+% % Further, by comparing the possible outcomes at different points in evolutionary history, we can determine how particular events influence the likelihood of different outcomes (i.e., historical contingency). 
+% % These experiments/techniques allow us to refine our understanding of different dynamics and how they interact. 
+% %Armed with not just what evolutionary endpoints were reached, but how particular events (even individual mutations) influenced which outcomes are more or less likely (i.e., historical contingency), we will be able to refine our understanding of different dynamics and how they interact.
+% %Armed with not just evolutionary outcomes, but how particular events -- even individual mutations -- influence those outcomes (i.e., historical contingency), we can refine our understanding of different dynamics and how they interact.
+% We can even directly measure historical contingency by conducting replay experiments before and after a particular event (such as one or more mutations).% to analyze the change in the distribution of outcomes.
+
+% Thus far, these analytic replay experiments have been employed to study the genetic potentiation of complex traits, such as citrate metabolism in \textit{E. coli} \citep{blountHistoricalContingencyEvolution2008}, novel receptor usage in Phage $\lambda$ \citep{meyerRepeatabilityContingencyEvolution2012}, and associative learning in digital organisms \citep{fergusonPotentiatingMutationsFacilitate2023}.
+% %Here we shift the focus from the evolution of a particular target trait and instead apply replay experiments to study fundamental evolutionary phenomena.
+% Instead of focusing on the evolution of a particular target trait, here we apply replay experiments to an idealized model system to study fundamental evolutionary phenomena.
+% %Instead of replaying the evolution of a particular complex trait, here we shift to a simplified model to use these techniques to better understand fundamental evolutionary phenomena. 
+
+In Chapter \ref{chap:intro} we discussed how researchers are beginning to use analytic replay experiments to quantify how long-term evolutionary outcomes changed over the course of a population's history. 
+Indeed, in Chapters \ref{chap:learning_case_studies} and \ref{chap:learning_distributions} we employed these replay techniques to identify key ``potentiating'' mutations in the evolution of associative learning in Avida. 
+Here, we use these same replay techniques to understand the ``adaptive momentum'' effect \citep{Bohm2024.04.08.588357}.
+
+Previously, replay experiments have been employed to measure the potentiation of complex traits and behaviors, both in microbial organisms \citep{blountHistoricalContingencyEvolution2008, meyerRepeatabilityContingencyEvolution2012, guptaHostparasiteCoevolutionPromotes2022, jochumsenEvolutionAntimicrobialPeptide2016a} and in digital organisms (Chapters \ref{chap:learning_case_studies} and \ref{chap:learning_distributions}).
+Here we instead focus on the potentiation of a significantly simpler task: crossing deleterious fitness valleys in a one-dimensional sawtooth function. 
+These fitness valleys require exactly six mutations to cross, which, due to the one-dimensional nature of this system, must be acquired in order. 
+Therefore, we already know that any potentiating mutations must be a subset of these six mutations, and thus we are not searching for them as we were in the previous two chapters. 
+However, we do not know the \textit{amount} of potentiation conferred by each of these six mutations. 
+By comparing these potentiation dynamics of two categories of populations (those in disequilibrium and those in equilibrium), we can directly observe the effect that adaptive momentum has on evolutionary exploration and how these effects change over time. 
+
+\subsection{Adaptive Momentum}
+
+%Here, we use analytic replay experiments to study a newly identified dynamic called ``adaptive momentum'' \citep{Bohm2024.04.08.588357}.
+The adaptive momentum framework suggests that periods of disequilibrium resulting from phenomena like selective sweeps and range expansions can enhance genetic exploration \citep{Bohm2024.04.08.588357}. 
+We use analytic replay experiments to investigate this effect in selective sweeps.
+Consider the appearance of a beneficial mutation in an asexual spatial population. 
+If this mutation establishes and is sufficiently strong, it can trigger a selective sweep where the genotypes with the beneficial mutation come to dominate the population.
+During the sweep, there will be a boundary between individuals with the beneficial mutation and those without (wild type).
+If advantaged individuals along this boundary accrue relatively small deleterious mutations, they may still have a combined fitness benefit over the wild type. 
+Thus, individuals along the leading edge of the sweep will have an increased potential to accumulate deleterious mutations that, in turn, increase the potential to explore genetic space and facilitate genetic discovery across fitness valleys. 
+Adaptive momentum persists until the wild type is eradicated and equilibrium is reestablished. 
+However, if during fixation a new beneficial mutation is discovered, the state of disequilibrium will persist, thus extending the ``momentum window'' (the period of adaptive momentum). 
+\footnote{Adaptive momentum describes how disequilibrium during evolution can result in periods of increased mutation buffering. Such disequilibrium can be caused by several conditions, including sweeps, range expansions, and increases in carrying capacity in both spatial and well-mixed populations. The adaptive momentum framework further considers how the increased potential for mutational buffering can also affect large scale evolutionary rates via increased genetic exploration and subsequent genetic discovery.}
+
+
+%These odds will remain elevated as long as sweeps continue and the population remains in fitness disequilibrium.
+%Indeed, any type of fitness disequilibrium will initiate adaptive momentum, including environmental shifts, changes in population capacity, or even extinction events.
+%In all cases adaptive momentum can result in beneficial mutations appearing in clustered groups.
+
+In the work presented here, we create an ideal environment for adaptive momentum by using a one-dimensional spatial population evolving on a rising sawtooth fitness function.
+%where each peak is higher than the previous, separated by a deleterious valley.
+We use replay experiments to measure how the state of the population affects the potential to cross the next fitness valley. 
+%We find that the effect of adaptive momentum is clearly visible in this simple system. 
+Replay experiments show that %valley crosses are purely reliant on chance in populations not experiencing adaptive momentum. 
+%However, 
+%under the effect of 
+adaptive momentum increases the potential for populations to cross fitness valleys, an effect that diminishes over time.
+%Replay experiments show that valley crosses are purely reliant on chance, unless the population is experiencing adaptive momentum. 
+%During adaptive momentum, populations see increased potential to cross fitness valleys, though that increase in potential diminishes over time. 
+%Replay experiments show that valley crosses are pure chance when adaptive momentum is not in play, while populations experiencing adaptive momentum see increased potential to cross valleys, though that increase does diminish over time. 
+%Further, we see that the leading edge of the selective sweep dictates the potential to cross early in the valley, though potential exceeds our expectations later in the valley.
+
+Using simple assumptions about the structure of the leading edge of a selective sweep, we generated a predictive model of the potential for valley crossing during adaptive momentum. 
+%This estimation is most accurate for early steps into the fitness valley, but loses accuracy when the leading edge is deeper in the valley and thus more stochastic events may have occurred, resulting in a higher state of disorder, which differs from the assumptions of the model.
+While this estimation is highly accurate for early steps into the fitness valley, it loses accuracy when the leading edge is deeper in the valley. 
+%This deviation from the predictive model is likely the result of historical contingency.
+The time required for a population to reach deeper mutations in the fitness valley is likely also increasing the number of stochastic events that cause differences from the assumptions of the model. 
+%The time required for a population to reach deeper mutations in the fitness valley increases the accumulation of stochastic events that increase its differences with the assumptions of the model. 
+%This deviation from the predictive model is likely the result of accumulated stochastic events that have occurred in the path to reach deeper mutations in the fitness valley, resulting in a higher state of disorder and more differences with the assumptions of the model.
+Finally, by shuffling organism positions in our population snapshots we can disrupt population structure.
+This shuffled analysis allowed us to verify that the organization of the population, not just its genetic composition, is vital to valley-crossing potential. 
+Overall, this work refines the framework proposed by adaptive momentum while advancing the methodology of analytic replay experiments as a tool for studying historical contingency, exposing sections of both that are ripe for further study. 
+
+
+
+
+% \section{Introduction}
+
+% Innovations in science and technology periodically create opportunities to conduct experimental studies that were previously relegated to the realm of thought experiments. 
+% This shift occurred with Stephen Jay Gould's idea of ``replaying the tape of life'' -- starting evolution over again to see if we would arrive at similar outcomes \citep{gouldWonderfulLifeBurgess1990}. 
+% Previous researchers have brought this thought experiment into reality by leveraging microbial populations that can be frozen and then revived or digital populations that can be re-instantiated at will.
+% Researchers have begun to leverage these \textit{analytic replay experiments} and the evolutionary counterfactuals they generate to test hypotheses on historical contingency \citep{blountContingencyDeterminismEvolution2018}.
+% Below we explore how these techniques can be expanded to develop a deeper understanding of evolutionary dynamics, in this case exploring the concept of ``adaptive momentum''.
+
+% \subsection{Replay Experiments and Evolutionary Prediction}
+
+% Thus far, analytic replay experiments have been employed to study the genetic potentiation of complex traits, such as citrate metabolism in \textit{E. coli} \citep{blountHistoricalContingencyEvolution2008}, novel receptor usage in Phage $\lambda$ \citep{meyerRepeatabilityContingencyEvolution2012}, and associative learning in digital organisms \citep{fergusonPotentiatingMutationsFacilitate2023} 
+% (See \cite{blountContingencyDeterminismEvolution2018} for a review).
+% Here we shift the focus from the evolution of a particular target trait and instead apply replay experiments to study fundamental evolutionary phenomena.
+
+% Traditional evolutionary biology is often focused on improving our ability to predict evolutionary outcomes, or at least understand why evolutionary history played out the way it did.
+% Prediction can be especially difficult in light of complex fitness landscapes with epistatic interactions, where one mutational event can change the impact of others, sometimes even making would-be deleterious mutations into beneficial ones.
+% Given the speed of modern digital evolution systems, however, we are able to shift from trying to simply predict evolution to empirically measuring the range and distribution of possible outcomes.
+% Armed with not just what evolutionary endpoints were reached, but how particular events (even individual mutations) influenced which outcomes are more or less likely (i.e., historical contingency), we will be able to refine our understanding of different dynamics and how they interact.
+
+% \subsection{Adaptive Momentum}
+
+% %Here, we use analytic replay experiments to study a newly identified dynamic called ``adaptive momentum'' \citep{Bohm2024.04.08.588357}.
+% The adaptive momentum framework suggests that periods of disequilibrium resulting from phenomena like selective sweeps and range expansions can enhance genetic exploration \citep{Bohm2024.04.08.588357}. 
+% We use analytic replay experiments to analyze this effect in selective sweeps.
+% Consider the appearance of a beneficial mutation in an asexual spatial population. 
+% If this mutation establishes and is sufficiently strong, it can trigger a selective sweep, a disequilibrium state, where the genotypes with the beneficial mutation come to dominate the population.
+% During the sweep, there will be a boundary between individuals with the beneficial mutation and those without (wild type).
+% If advantaged individuals along this boundary suffer relatively small deleterious mutations, they may still have a combined fitness benefit over the wild type. 
+% The individuals along the leading edge of the sweep will have an increased potential to accumulate deleterious mutations that, in turn, increase the potential to explore genetic space, facilitating genetic discovery across fitness valleys. 
+% Adaptive momentum persists until the wild type is eradicated. 
+% However, if during fixation a new beneficial mutation is discovered, this will extend the ``momentum window'' (the period of adaptive momentum). 
+% \footnote{In a most general sense, adaptive momentum describes how any disequilibrium conditions that arise during evolution will result in a period of increased mutation buffering. Adaptive momentum applies to several conditions, including sweeps, range expansions, and increases in carrying capacity in spatial and well-mixed populations. The adaptive momentum framework further considers how the increased potential for mutational buffering can also affect large scale evolutionary rates via changes to increased genetic exploration and subsequent genetic discovery.}
+
+
+% %These odds will remain elevated as long as sweeps continue and the population remains in fitness disequilibrium.
+% %Indeed, any type of fitness disequilibrium will initiate adaptive momentum, including environmental shifts, changes in population capacity, or even extinction events.
+% %In all cases adaptive momentum can result in beneficial mutations appearing in clustered groups.
+
+% In the work presented here, we create an ideal environment for adaptive momentum by using a one-dimensional spatial population evolving on a rising sawtooth fitness function.
+% %where each peak is higher than the previous, separated by a deleterious valley.
+% We use replay experiments to measure how the state of the population results in different potential to cross the next fitness valley. 
+% %We find that the effect of adaptive momentum is clearly visible in this simple system. 
+% Replay experiments show that %valley crosses are purely reliant on chance in populations not experiencing adaptive momentum. 
+% %However, 
+% under the effect of adaptive momentum, populations see an increased potential to cross fitness valleys that diminishes over time.
+% %Replay experiments show that valley crosses are purely reliant on chance, unless the population is experiencing adaptive momentum. 
+% %During adaptive momentum, populations see increased potential to cross fitness valleys, though that increase in potential diminishes over time. 
+% %Replay experiments show that valley crosses are pure chance when adaptive momentum is not in play, while populations experiencing adaptive momentum see increased potential to cross valleys, though that increase does diminish over time. 
+% %Further, we see that the leading edge of the selective sweep dictates the potential to cross early in the valley, though potential exceeds our expectations later in the valley.
+
+% Using simple assumptions about the structure of the leading edge of a selective sweep, we generated a predictive model of the potential for valley crossing during adaptive momentum. 
+% %This estimation is most accurate for early steps into the fitness valley, but loses accuracy when the leading edge is deeper in the valley and thus more stochastic events may have occurred, resulting in a higher state of disorder, which differs from the assumptions of the model.
+% While this estimation is highly accurate for early steps into the fitness valley, it loses accuracy when the leading edge is deeper in the valley. 
+% This deviation from the predictive model is likely the result of accumulated stochastic events that have occurred in the path to reach deeper mutations in the fitness valley, resulting in a higher state of disorder and more differences with the assumptions of the model.
+% Finally, by shuffling organism positions in our population snapshots we can disrupt population structure.
+% This shuffled analysis allowed us to verify that the organization of the population, not just its genetic composition, is vital to crossing potential. 
+% Overall, this work refines the framework proposed by adaptive momentum while advancing the methodology of analytic replay experiments as a tool for studying historical contingency, exposing sections of both that are ripe for further study. 
+

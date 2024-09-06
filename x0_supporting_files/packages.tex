@@ -1,0 +1,93 @@
+\usepackage[export]{adjustbox}
+\usepackage{afterpage}
+\usepackage{algorithmic}
+% \usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array}
+\usepackage[base]{babel}
+\usepackage{booktabs}
+\usepackage{calc}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames]{colortbl}
+\usepackage{comment}
+\usepackage{csquotes}
+\usepackage{csvsimple}
+\usepackage{epsfig}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+% \usepackage{filecontents}
+\usepackage{floatpag}
+\floatpagestyle{plain}
+\usepackage[T1]{fontenc} % adapted from https://tex.stackexchange.com/a/388208
+\usepackage[hmarginratio=1:1,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{grffile} % https://tex.stackexchange.com/a/110518
+\usepackage{hyperref,cleveref}
+\usepackage{ifthen}
+\usepackage{import}
+\usepackage{layout}
+\usepackage{listings}
+\usepackage{longtable}
+\setlength{\LTleft}{0pt} % adapted from https://tex.stackexchange.com/a/48558
+\usepackage{lscape}
+\usepackage{makecell}
+\usepackage[footnotes,definitionLists,hashEnumerators,smartEllipses,hybrid]{markdown}
+\usepackage{makecmds}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{morewrites}
+\usepackage[resetlabels]{multibib}
+% for compatibility with subrepos
+% \citepinappendix not invoked in dissertation
+\newcites{inappendix}{Supplementary References}
+\usepackage{multirow}
+\usepackage{moreverb}
+\usepackage{natbib}
+\usepackage{numprint}
+\npthousandsep{\,}
+\usepackage{pdflscape}
+\usepackage[section]{placeins}
+\usepackage{pythonhighlight}
+\usepackage{rotating}
+\usepackage{sectsty}
+\usepackage{setspace}
+\usepackage{siunitx}
+\usepackage{stringstrings}
+\usepackage{subcaption}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{tabu}
+\usepackage{titlesec}
+\usepackage{textcomp}
+% \usepackage[euler]{textgreek}
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{8.5in}
+\setlength{\TPVertModule}{11in}
+\usepackage[flushleft]{threeparttable}
+\usepackage{tocloft}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{vcell}
+% \usepackage[table,xcdraw]{xcolor}
+\usepackage{xfp}
+\usepackage{xparse}
+\usepackage{xstring}
+% tikz must load after xcolor, https://tex.stackexchange.com/a/51490
+\usepackage{tikz}
+% \usepackage [latin1]{inputenc}
+
+\usetikzlibrary{calc}
+
+% pragma once, adapted from https://tex.stackexchange.com/a/195173
+\makeatletter
+\let\pragma@iinput=\@iinput
+\def\@iinput#1{\xdef\@pragmafile{#1}\pragma@iinput{#1}}
+\def\@pragmafile{default}
+\def\pragmaonce{%
+   \csname pragma@\@pragmafile\endcsname
+   \global\expandafter\let \csname pragma@\@pragmafile\endcsname = \endinput
+}
+\makeatother

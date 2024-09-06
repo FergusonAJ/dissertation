@@ -1,0 +1,74 @@
+\section{Introduction}
+
+ % Lead in, get the reader thinking about analyzing evolutionary probabilities retrospectively
+How likely is the evolution of a particular trait?
+Researchers have long been interested in predicting evolutionary outcomes, but the inherent stochasticity in the process makes this goal exceptionally challenging.
+In order to make more accurate predictions, we would need to better understand how and why the underlying probabilities of potential outcomes change over time.
+%What if we instead turn the concept on its head? 
+Looking purely retrospectively at evolution in nature, this type of analysis is not possible (at least not without a time machine).
+%If we look at lineages that successfully evolved that particular trait, can we start to analyze how the likelihood of evolving the trait changed over time? 
+%How did the history of that lineage factor into these likelihoods?
+%Experimental evolution allows us to test hypotheses that are extremely difficult, if not impossible, to test in the natural world.
+Leveraging the flexibility and controls available in experimental evolution, however, allows us to empirically test questions that were previously only hypothetical \citep{kaweckiExperimentalEvolution2012}. 
+Here, we focus on Stephen Jay Gould's idea of ``replaying the tape of life'' \citep{gouldWonderfulLifeBurgess1990}.
+The idea is simple: If we were to start life over again from the same initial conditions, would evolution follow the same pathway?
+Alas, Gould remarked that this experiment is unfortunately impossible. 
+
+% Introduce analytical replay experiments (and likely the rest of Zach's 2018 paper)
+While it may be impossible to replay the \textit{entire} tape of life, practitioners of experimental evolution have conducted this experiment on a smaller scale. 
+\cite{travisanoExperimentalTestsRoles1995}, \cite{wagenaarInfluenceChanceHistory2004}, and \citet{blountHistoricalContingencyEvolution2008} introduced and refined methods of investigating the role of historical contingency in evolving populations: parallel and analytic replay experiments.
+By evolving multiple populations from the same starting organisms, researchers can identify the range and distribution of outcomes.
+These populations can be evolved simultaneously from a given starting point (parallel replays), however many microbial and digital populations allow us to preserve a ``fossil record'', opening up another possibility.
+Analytic replay experiments systematically revive historical populations to re-evolve them from multiple time points, allowing researchers to identify alternative possibilities after the fact \citep{blountContingencyDeterminismEvolution2018}.
+For a more thorough review of the story behind analytic replay experiments and an overview of several papers that have used them, see Chapter \ref{chap:intro}.
+%When one strain of \textit{E. coli} in Dr. Richard Lenski's long-term evolution experiment \citep{lenskiLongtermExperimentalEvolution1991} unexpectedly evolved the ability to digest citrate,  
+%\citet{blountHistoricalContingencyEvolution2008} used analytic replay techniques on previously frozen samples (spaced across the lineage) to identify the potentiation of this unlikely evolutionary outcome.
+%By routinely storing organisms throughout an experiment, researchers can create a ``fossil record'' of the population leading up to the evolution of a focal trait or behavior. 
+%Unlike normal fossils, these historical populations (likely either microbiological or digital) can be revived.
+%Because of this, researchers can seed new populations using the various time points before the focal behavior evolved and let these new populations evolve independently of the original lineage. 
+%Observing whether the same behavior evolves in these new ``replay'' populations will then shed light on what led up to the original change in behavior -- whether the genetic background ``potentiated'' the change or if it was due to happenstance.
+%In their replay experiments, restarts from earlier time points never re-evovled citrate utilization, but the probability (potentiation) to evolve this trait jumped substantially shortly before the actual evolution occurred. 
+%They were able to identify that early replays never re-evovled citrate utilization, but an increase in potentiation resulted in replicates 
+%In their replay experiments, restarts from earlier time points never re-evolved citrate utilization, but successful re-evolution of the behavior in restarts from later time points indicated that the population had become potentiated. %experienced potentiating mutations the probability (potentiation) to evolve this trait jumped substantially shortly before the actual evolution occurred. 
+%In later work, \citet{blountGenomicAnalysisKey2012} used genetic sequencing and manipulation to identify the specific potentiating mutations associated with this increased probability.
+
+%Analytic replay experiments provide a powerful new tool for understanding the role of history in evolution. 
+%In addition to studying the evolution of \textit{E. coli} citrate metabolization, analytic replay experiments have also been used to study the evolution of novel receptor usage of Phage $\lambda$ into \textit{E. coli} \citep{meyerRepeatabilityContingencyEvolution2012}, and colistin resistance in \textit{Pseudomonas aeruginosa} \citep{jochumsenEvolutionAntimicrobialPeptide2016a}.
+%For a review of these experiments and other uses of analytic replay experiments, see \citep{blountContingencyDeterminismEvolution2018}.
+
+In this work we use digital evolution, specifically the evolution of self-replicating computer programs in the Avida Digital Evolution Platform \citep{ofriaAvidaSoftwarePlatform2004a}, which has previously been used to conduct replay experiments.
+%Replay experiments have also been used in digital systems. 
+\citet{yedidHistoricalContingentFactors2008} employed this technique to investigate the re-evolution of traits following an extinction episode, while  
+\citet{covertiiiExperimentsRoleDeleterious2013} used analytic replay experiments to study the importance of individual deleterious mutations in the evolution of complex traits.
+% Potentially cite Dave Bryson's dissertation: https://d.lib.msu.edu/etd/693/datastream/OBJ/View/
+
+% Using associative learning as our example complex behavior
+% Why choose associative learning
+We selected associative learning as a complex behavior to study potentiation.
+Associative learning is a non-trivial capability exhibited by most complex organisms.
+In digital evolution systems like Avida, it serves as a rare yet evolvable trait \citep{pontesEvolutionaryOriginAssociative2020}.
+For an Avida organism to exhibit associative learning, it must be capable of sensing its environment, taking action, and storing information in memory. 
+% What has been done to study the evolution of associative learning before?
+The evolution of associative learning has been studied via experimental evolution in both digital \citep{pontesEvolutionaryOriginAssociative2020, mcgregorEvolutionAssociativeLearning2012} and natural systems \citep{dunlapExperimentalEvolutionPrepared2014a, meryExperimentalEvolutionLearning2002}, yet many questions remain about how it evolves.
+% List some ways its been studied
+% However, there are still countless questions left unanswered...
+While more complex forms of learning are found in nature, associative learning remains an important building block for most others and insights about how it arises may be informative for understanding the broader evolution of intelligence, especially within digital contexts.
+
+% What we did
+In this work, we begin to analyze how the likelihood of evolving a complex trait changes along a successful lineage.
+Using analytic replay experiments, we identified individual mutations that cause drastic increases in the potentiation of associative learning. 
+We then analyzed those mutations and their mutational neighborhoods to begin characterizing how a mutation is potentiating.  
+%It is through this lens of replay experiments that we investigated the evolution of associative learning. 
+%We extracted lineages that successfully evolved associative learning and then founded replay populations from various points along those lineages. 
+%Initially, only a small fraction of replicates evolved associative learning when starting from the ancestral organism.
+%As we founded replays along successful lineages, we could observe the changes in the fraction of successful replicates, providing evidence as to which steps in the lineages were the most beneficial for evolving associative learning. 
+While these replay experiments are informative and useful for exploring counterfactual evolutionary possibilities, they are also computationally intensive.  
+As such, %this work is an initial exploration of the power of this technique where 
+we start by focusing on a set of case-study lineages to develop an initial framework for understanding how potentiation can occur.
+
+% What we found
+Analyzing four successful lineages, we find that potentiation can increase suddenly, even due to a single mutation.
+Since these lineages were selected because they successfully evolved associative learning, potentiation generally increases in each, though some decreases do occur.
+Potentiating mutations vary in initial effect, making them challenging to detect.
+Retrospective analysis allows us to identify them, however, and begin hypothesizing about the dynamics that allow these mutations to potentiate associative learning.
+This work demonstrates using analytic replay experiments for quantifying potentiation along a lineage and establishes baselines and techniques for future studies. 

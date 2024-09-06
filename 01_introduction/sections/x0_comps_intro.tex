@@ -1,0 +1,93 @@
+
+As many evolution-focused dissertations start, there is seemingly limitless diversity to the organisms that have evolved in nature. 
+From microbes to megafauna, evolutionary processes have created a stunning array of traits and behaviors in organisms. 
+But how did these features come to exist?
+And what general evolutionary trends can we abstract from these examples? 
+These, of course, are grand challenges of evolutionary biology. 
+
+In addressing these challenges, biologists naturally examine the fossil record for clues on how evolution produced life as we know it.
+Looking to history, however, has many limitations: we are provided with only a single instance of evolution, the data we do have is incomplete, and we are not able to go back in time to conduct controlled experiments.
+In recent decades there has been a surge in experimental approaches to studying evolution.
+If we evolve populations in controlled laboratory conditions, we are able to evolve many populations in parallel, observe almost everything that occurs, and build a range of experimental conditions -- thus addressing each of the problems above.
+%If we evolve populations in controlled laboratory conditions, we are able to ask evolutionary questions that are [] with the fossil record alone. 
+%By doing X, Y, Z, we can do blah. 
+%Recent decades have seen a surge in ``experimental evolution'' -- observing evolution \textit{as it happens}, typically in a laboratory or digital setting. 
+%In this work, it is through this lens that we will tackle evolutionary questions. 
+%In this dissertation, I will conduct this research using an experimental mindset toward understanding historical contingency.
+In this dissertation, I will adopt this experimental mindset in an attempt to understand the role of historical contingency in evolution. 
+%conduct this research using an experimental mindset toward understanding historical contingency.
+I will use the possibilities revealed from counterfactual experiments to understand "life as it could have been" in our study systems.
+This techniques will help me separate the flukes from the inevitabilties in the dynamics that shaped the course of evolution as it was originally realized in these studies.
+
+When looking at evolution in nature, we often encounter beneficial traits that were uniquely evolved in one type of organism, while organisms in the broader taxonomic unit found different survival strategies. % in a way that others did not. 
+%When looking at evolution in nature, we often encounter highly beneficial traits that are restricted to the evolution of one or a few species. evolved in one species, while other species found different survival strategies. 
+For example, while many species of birds and insects exhibit self-powered flight, only one branch of mammals have: bats. 
+Why was this behavior so rare, and what conditions led to the evolution of flight in only this one specific branch of mammals? 
+In nature, there is only so much we can do; unfortunately we cannot travel back in time and ``replay the tape of life'' (as evoked by \citet{gouldWonderfulLifeBurgess1990}) to observe if flight consistently evolved in bats, or if it was an uncommon stroke of luck.
+Could we instead use experimental evolution to ask similar questions?
+As I describe below, biologists have successfully employed this approach to understand the evolution of microbial traits, and I seek to further refine these techniques.
+
+In thinking about the evolution of a particular trait, it is important to consider three different factors: adaptation, chance, and history \citep{travisanoExperimentalTestsRoles1995}.
+%Adaptation clearly plays a role, as traits that provide a benefit to the survival and reproduction of an organism are more likely to be carried on to the next generation and eventually increase in frequency. 
+New or modified traits that provide a net benefit to the survival and reproduction of an organism are more likely to increase in frequency, thus illustrating the role that \textit{adaptation} plays in shaping evolutionary outcomes. 
+%Was there a clearly evolutionary pathway where the trait was selected?
+%Evolution is an inherently stochastic process. 
+Of course, adaptation can only act upon genetic sequences that are available in the population.
+The stochastic nature of random mutations means that some genetic sequences will arise, while others will never even appear for selection to consider in the first place.
+The random appearance of sequences -- or disappearance as misfortune can remove otherwise fit genotypes -- highlights some of the roles of \textit{chance} in evolution.
+%Due to the stochastic nature of random mutations and genetic drift, however, we cannot fully predict evolution in even simple systems. 
+%Did this stochasticity play an important role?
+%Did a fluke mutation or unlikely allele sweep make all the difference?
+%This is the contribution of chance.
+The influence of chance is constrained, though, by the starting genotypes that mutations act upon; traits can appear or be modified only if such changes are available in the local genetic neighborhood.
+%Finally, we must consider history. 
+%In genetic space, the traits in close proximity heavily depend on where you start. 
+%The traits that can be mutated in depend on where you are in genetic space.
+%As such, small, seemingly insignificant mutations can have drastic downstream effects. 
+%Thus, the \textit{history} that has resulted in the current distribution of sequences in the population significantly effects what might evolve.
+This distribution of genetic sequences in the population at the point under investigation in an evolutionary study can be described as the product of its \textit{history}.
+It is the interplay of these three aspects that produce the complex dynamics that we observe in evolving populations.
+%Did such a mutation matter in the evolution of the trait we care about? 
+%What might that mutation have looked like? 
+
+%TODO: move this to somewhere appropriate
+Of course, what we call history is just a matter of temporal perspective.
+From the vantage point of a population in a given state, all of the dynamics that brought the population to that state are now all consolidated under the label of history.
+Looking forward, however, both adaptation and chance will be at play, with different mutations or combinations of mutations occurring at different probabilities, and the resulting combinations having differing survival potential.
+As time advances, these changes are again relegated to history, while new outlooks now exist for the population based on its new composition.
+As such, for any study where we examine the balance among these three factors, we need to be clear about the starting point from which our perspective will be based.
+
+In this work, I focus on the balance between chance and adaptation and how that balance changes over the course of history.
+From one point along a lineage, the evolution of a given trait may be unlikely, subject to the whim of chance.
+From a later point along that lineage, that same trait's evolution may shift to being a near certainty, with adaptation more in control of the population's fate.
+Is there some way for us to predict these shifts in influence between adaptation and chance?
+Can we distinguish between a population that is being driven to a specific outcome from one that is simply adrift?
+And how do these shifts occur?
+Does chance give way to adaptation in small increments, or can an individual mutation dramatically alter the balance?
+
+The challenge with addressing these problems using standard experimental evolution techniques is that they require us to have speed, control, and data collection capabilities beyond what is currently possible.
+Specifically, we must be able to isolate all of the individual mutations along a lineage and replay evolution using each step as a new starting point.
+Furthermore, for each of these starting points, we need to be able to conduct enough replays to generate statistically powerful conclusions about evolutionary outcomes.
+
+%By leveraging experimental evolution, not only can we observe traits as they evolve, we also have access to experimental control unthinkable in natural systems. 
+I leverage digital evolution to overcome these hurdles, , which gives many benefits over wetlab approaches, including greater speed, automatic high resolution data collection, and the ability to start an experiment with the exact conditions of our choosing.
+%three main benefits: 
+%(1) we can observe traits and populations \textit{as they evolve} with perfect accuracy, 
+%(2) we are given access to experimental controls unthinkable in natural systems, 
+%and (3) we can evolve populations with unprecedented speed. 
+Of course, digital evolution also has its drawbacks. 
+For example, there is a much lower limit to the complexity of the organisms and what we have been able to evolve \textit{in silico}.
+Further, due to technological constraints, digital evolution is typically limited to scales of at most tens of thousands of organisms, while natural populations can be vastly larger.
+%Digital evolution is limited in scale by technological constraints that do not effect populations evolving in nature. 
+%While the scale of populations and their interactions in nature can produce unthinkable complexity, digital evolution is limited by technological constraints. 
+As such, evolving meaningfully complex traits from scratch in open-ended systems requires a better understanding of the underlying dynamics to be able to maximize evolvability. 
+
+While there are many complex traits that could be studied, here I focus on the evolution of early cognitive behaviors. 
+This topic is of great interest to evolutionary biologists in understanding the origins of intelligent behaviors.
+The lack of obvious physical characteristics of intelligence makes it challenging to study the evolution of these traits by looking at the fossil record, and their complexity makes them difficult to re-evolve under laboratory conditions.
+%Here, I focus on one such area: the transition from purely reactive phenotypically plastic organisms to those capable of very basic cognition. 
+%Of course, this domain has also proven challenging for evolving digital systems, as artificial intelligence turns out not to be a solved problem.
+Of course, this domain has also proven challenging for evolving digital systems, which is of little surprise as artificial intelligence as a field has encountered many hurdles in its quest to produce intelligent agents. %, varied history of artificial intelligence shows that creating agents with intelligent behaviors is no easy task.
+Investigations into the origins of simple stepping stones to intelligence, however, have been much more fruitful. 
+%While these behaviors have been evolved, this evolution is often either rare or in very specific systems tuned to the task. 
+By looking at the role of history in the evolution of early cognitive behaviors, I aim to shed some light on how these behaviors arise, why they are so difficult to evolve, and how we might increase the complexity of intelligent behaviors that digital evolution systems can produce.

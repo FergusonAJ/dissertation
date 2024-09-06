@@ -1,0 +1,114 @@
+\section{The evolution of cognitive behaviors}
+
+% What do we mean by cognitive behaviors?
+Previous studies of historical contingency in digital organisms have primarily explored the evolution of Boolean logic functions \citep{wagenaarInfluenceChanceHistory2004, bundyHowFootprintHistory2021}.
+%Here I instead focus on the evolution of cognitive behaviors, as they can be more intuitive to identify and to understand the stepping stones that lead up to them. % as compared to reactive behaviors. 
+%Here I instead focus on the evolution of cognitive behaviors, as they can be more intuitive to understand and to identify the stepping stones that lead up to them. % as compared to 
+Here I instead focus on the evolution of cognitive behaviors, which are more intuitive to understand as phenotypic traits, though their internal mechanisms can still be opaque.
+
+Cognition focuses on sensing external information, dynamically processing it, and using the results to select a behavioral response.
+The specific definition of cognition is debatable, but all examples of cognitive behaviors in this work use past experiences to make more effective choices (i.e., they require memory).
+%The specific definition of cognition is debatable, but all examples of cognitive behaviors in this work require memory in order to make optimal choices. 
+As such, these behaviors are integrating information over time, and I argue that clearly categorizes them as cognitive. 
+%The information used and the type of processing performed determine the category of a cognitive behavior.
+%For example, if the processing of environmental inputs is due to a rigid genetic encoding, it is usually described as phenotypic plasticity.
+%By definition, cognitive behaviors make use of external information 
+%In categorizing these behaviors, 
+%I define ``reactive behaviors'' as those that require information about the current state of the environment in order to make an optimal decision, but do not require memory of past events.
+%This still allows for complex genetically-encoded behaviors, such as the phenotypically plastic regulation of metabolism that I will discuss in Chapter \ref{chap:consequences_of_plasticity}. 
+%Conversely, cognitive behaviors require more than just the current state of the environment. 
+While many interesting behaviors fall under this cognitive umbrella, in this dissertation I focus on two of the most simple: (1) remembering environmental cues and associating them with optimal behaviors (Chapters \ref{chap:alife_submission} and \ref{chap:replaying_associative_learning}), and (2) monitoring local resource availability to identify when to shift between feeding on the current nutrient patch and searching for a new patch (Chapter \ref{chap:varying_environments}). 
+%While an astounding number of behaviors fall under this umbrella, here I focus on some of the most simple: using one bit of memory to switch between two states (Chapter \ref{chap:varying_environments}) and associating a environmental stimuli with behavior (Chapters \ref{chap:alife_submission} and \ref{chap:replaying_associative_learning}). 
+
+%While this includes many higher level intelligent behaviors, we such as memory or higher-level information processing.% (e.g., integrating over multiple sensors). 
+
+% Why focus on them here?
+%Why focus on cognitive behaviors? 
+A myriad of cognitive behaviors exist in animals, and debatably many exist in plants and microbes as well \citep{loyWhereAssociationEnds2021, dussutourLearningSingleCell2021a}. 
+%there is debate on whether the most simple forms of cognition (e.g., habituation, associative learning) are found in plants and microbes \citep{loyWhereAssociationEnds2021, dussutourLearningSingleCell2021a}.
+Evolving these behaviors \textit{in silico} is therefore critical if we want to create useful agents or to study more complex evolutionary dynamics found in nature. 
+However, evolving cognitive behaviors in digital systems has traditionally been difficult. 
+It is a challenge worth pursuing, though, and replay experiments to disentangle historical contingency provide a new opportunity to make progress.
+%It is a challenge worth pursuing, though, and as such it is a good choice for studying historical contingency in evolution. 
+%Cognitive behaviors have the potential for complicated effects from historical contingency. 
+At the same time, the complex nature and multiple required components of cognitive behaviors create a valuable scenario for deepening our understanding of historical contingency. 
+As an example, a mutation that provides an organism with the capacity for memory may be initially deleterious (or at best neutral) if the machinery to utilize that memory is not in place.
+%However, the existence of that memory also makes it more likely that the machinery needed to use it will be selected if it appears.
+However, if that machinery were to appear, the lack of that memory might render it useless.
+It is only in combination that these two traits form a beneficial behavior.
+As such, either these traits must arise simultaneously for adaptation to be able to act upon the combination, or one must persist by chance until the other provides it with utility.
+%It is only with the combination of the two that we would expect [X] to persist. 
+%As such, we would only expect the two to persist 
+%However, the existence of that memory greatly increases the benefit of the machinery needed to use it in the case that it does appear, increasing selection pressure and increasing the likelihood that the mutation is not immediately lost to drift. 
+These possibilities raise the question: In lineages that successfully evolve cognitive behaviors, do we see an ``all-or-nothing'' simultaneous evolution of multiple interacting components, persistence of one component without benefit, or other dynamics such as exaptation of other traits?
+The work I propose here will illuminate critical steps in the evolution of cognitive behaviors, providing useful information for future attempts to evolve them while also establishing a framework to ask larger questions about the interplay of adaptation, chance, and history. 
+
+% What's so hard about evolving cognitive behaviors?
+% Sidenote: we are starting from scratch, no memory baked in or anything like that
+As mentioned, evolving these behaviors \textit{in silico} can be a monumental challenge.
+I wish to make two key notes. 
+First, there have been many studies focused on the interplay of learning and evolution (for a historical example, see \citep{hinton1987learning}), but here we are solely focused on evolving cognitive behaviors and not the downstream effects after cognition appears.   
+The interactions between learning and evolution have long been theorized and studied \citep{baldwinNewFactorEvolution1896}, and this broad area of literature is generally outside the scope of this dissertation proposal. 
+Second, it is important to note that here we are evolving these behaviors \textit{from the ground up}, with little to no built-in machinery to assist in the evolution of cognition. 
+Many representations such as Markov brains and recurrent neural networks have aspects like memory built in \citep{hintzeMarkovBrainsTechnical2017}. 
+These representations and the work that has been done with them are invaluable, but here we start at a low level, requiring even simple building blocks like memory to be evolved. % along with the rest of the organisms. 
+%As such, evolving even the most basic cognitive behaviors is an uphill battle, but we are thus able to studying these dynamics 
+While every digital system must make assumptions and use abstractions in designing the framework of organisms, I argue that requiring memory be evolved moves us closer to the challenges faced by early organisms in nature. 
+Ultimately, these dynamics will need to be studied under a broad range of conditions and representations in order to draw generalized conclusions.
+
+\subsection{Challenges in the evolution of cognitive behaviors}
+% Why is it hard?
+
+% Things to mention: 
+%   - Bootstrapping problem
+%   - Deceptive landscapes and local optima
+
+% Deceptive landscapes
+One common hurdle in evolving cognitive behaviors is one familiar to all researchers in evolutionary computation: deceptive fitness landscapes \citep{lehmanOvercomingDeceptionEvolution2014, whitleyFundamentalPrinciplesDeception1991, silvaOpenIssuesEvolutionary2016}. 
+Here, we refer to fitness landscapes as genotype-to-fitness maps %(usually in a low dimension to aid in visualization), 
+and deception as local optima that prevent evolution from reaching the target trait or global optimum. 
+Deceptive landscapes are an issue in many areas of evolutionary computation, but they become especially problematic when evolving cognitive behaviors. 
+The local optima that cause the issue are often behaviors that do not use memory, but still manage to do well enough to dominate a population \citep{risiEvolvingPlasticNeural2010}. %, preventing the reaches of genetic variation from discovering the cognitive behaviors. 
+These local optima restrict the exploratory capabilities of the population and prevent the discovery of the target cognitive behaviors, even if they would otherwise be superior if given the opportunity. %perform better and would be selected should they appear. 
+For example, bet-hedging techniques will often arise where organisms stochastically choose between two behaviors; if picking the correct behavior half of the time is sufficient for a net boost in fitness, such strategies will dominate.
+
+% Bootstrapping
+Further, the evolution of cognitive behaviors suffers from the ``bootstrap problem'', where no positive fitness gradient exists between initial conditions and genotypes that exhibit cognitive behaviors \citep{mouretOvercomingBootstrapProblem2009, gomezIncrementalEvolutionComplex1997, silvaOpenIssuesEvolutionary2016}. 
+While this dissertation proposal argues for the importance of history in evolution, there is no denying that selection is a powerful driver of evolution. 
+As such, an issue arises when stepping stones to cognitive behaviors are often not advantageous and thus not selected when they first appear. 
+As described above, the capacity for memory will only be useful in conjunction with machinery that makes use of the stored information.  
+%In the example mentioned above, the capacity for memory itself is not useful; it only becomes useful when combined with machinery to utilize it.  %unless the organism can pull from that memory in a beneficial way. 
+Such situations are especially common with cognitive behaviors, where several components are all required to click into place all at once for any of them to be useful.
+Each such instance makes the final behavior exponentially less likely to evolve. %, which can be extremely unlikely if not impossible in practice. 
+In these cases, additional evolutionary incentives must often be employed to bootstrap the necessary building blocks to eventually reach these behaviors, as I describe below.
+%It it is worth noting that this is a similar problem faced by researchers in the evolution of modularity, and future work should look to that literature for inspiration \citep{wagnerRoadModularity2007, cluneEvolutionaryOriginsModularity2013}.
+
+\subsection{Previous work}
+
+% What's been done overall?
+The challenges inherent to evolving cognitive abilities in digital systems have encouraged researchers to develop various approaches to overcome them.
+Researchers have augmented the fitness function of organisms to reward them for memory usage or other indicators of cognitive abilities; this has been met with success in neural networks solving T-mazes \citep{ollionLittleHelpSelection2012} and in Markov brains integrating over time \citep{schossauInformationTheoreticNeuroCorrelatesBoost2016}. 
+These approaches fall under the general umbrella of behavioral decomposition, where organisms are independently evaluated on multiple aspects of a task.
+Variations in this idea can be seen in evolving the learning process separately from memory \citep{nordinEvolutionWorldModel1998} or evolving distinct components to solve subtasks \citep{duarteHierarchicalEvolutionRobotic2012}.
+Instead of evolving multiple components, some researchers have found success evolving a single system that is tested in progressively more difficult environments \citep{gomezIncrementalEvolutionComplex1997}.
+These incremental evolution approaches are not a panacea, however, and have been demonstrated failing at improving the evolution of cognitive behaviors \citep{christensenIncrementalEvolutionRobot2006}. 
+
+Beyond incremental evolution, others have argued that due to the deceptive nature of the fitness landscapes in these problems, one method is to abandon the objective, whether wholesale or to some lesser degree, and instead to encourage the exploration of novel behaviors. 
+This has been demonstrated in the neuroevolution of memory usage \citep{lehmanOvercomingDeceptionEvolution2014}.
+Additionally, \citet{carvalhoCognitiveOffloadingDoes2016} demonstrated that, while we often think of reactive, non-cognitive behaviors as local optima that hinder the evolution of cognitive behaviors, in some circumstances they can be effective stepping stones instead.
+
+
+% What about Avida specifically?
+Most of the work in this proposal build upon the Avida digital evolution framework \citep{ofriaAvidaSoftwarePlatform2004a}, which was previously used to study the evolution of cognitive behaviors. 
+\citet{grabowskiEarlyEvolutionMemory2010a} demonstrated that Avida organisms can evolve rudimentary memory in a simple path-following environment. 
+In a special case, this path following task even saw the evolution of counting in an odometric strategy \citep{grabowskiCaseStudyNovo2013}.
+\citet{pontesEvolutionaryOriginAssociative2020} expanded on this work to show that organisms can evolve to associate random nutrient cues with the different turning directions, an early form of associative learning. 
+It is off of the foundation these works that I conduct Chapters \ref{chap:alife_submission} and \ref{chap:replaying_associative_learning} of this proposal. 
+
+% General outlook on improving the evolution of them (or save this for a conclusion in the real dissertation?)
+
+% Conclude the background section
+In this work, I aim to uncover trends in the role that history played in the evolution of these cognitive behaviors. 
+After identifying which mutations played key roles in making the evolution of the behavior inevitable along a lineage, we will analyze those mutations in greater detail.
+Ideally, we may even be able to leverage this information in future attempts at evolving the behavior to increase our ability to target specific complex traits. 
+Additionally, by looking at potentiation across different environments and genetic representations, we can better understand how the decisions made about our experiment (e.g., how to structure the environment and what representation to use) alter the ultimate probability of successfully evolving the target behavior. 

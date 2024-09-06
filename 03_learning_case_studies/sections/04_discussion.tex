@@ -1,0 +1,130 @@
+\section{Discussion and Conclusion}
+
+%\subsection{Some mutations are potentiating.}
+\subsection{Potentiation can rise suddenly}
+
+% What evidence do we have?
+We have documented several cases where single mutations dramatically increased the probability of associative learning later evolving. %arising in the longer term.
+Of the four lineages analyzed, each had a single step in the lineage that resulted in a substantial increase in potentiation (ranging from 36 to 64 percentage points). 
+Indeed, two of the lineages had an additional potentiating mutation that resulted in an increase of over 30 percentage points.
+Looking only at exploratory replays, each lineage has a 50-step window that resulted in a potentiation increase of at least 40 percentage points.
+
+% What does this mean?
+% What does the literature say about potentiation?
+While four lineages are insufficient to make any strong claims, these results demonstrate that it is \textit{possible} for single mutations to drastically increase potentiation, and provide compelling evidence that they may, in fact, be common. 
+In Lineages B and D, however, we do also observe regions with smaller, incremental increases in potentiation.
+Further studies are clearly necessary to more fully understand the general patterns and processes by which potentiation rises across different representations and environments.
+%We do not claim that all potentiation comes from one or a few mutations, simply that future work cannot disregard the possibility that a large chunk of potentiation comes from a single mutation.
+
+
+%\subsection{Some mutations are anti-potentiating.}
+\subsection{Potentiation can decrease along a successful lineage}
+
+In two of the lineages we analyzed (A and D), we see evidence of potentiation decreasing over spans of the lineage. 
+%We also see mutations that decrease the probability of associative learning appearing.  
+%Specifically, Lineages A and D both see jumps in potentiation that are then lost over the next section of the lineage. 
+With only 50 replay populations per lineage step, our results are noisy and it is difficult to isolate what is occurring during these periods of potentiation decline.
+While we were unable to identify any ``anti-potentiating'' mutations with effects as large as the positive potentiation mutations, it is possible for a single step in a lineage to greatly decrease potentiation. 
+
+%Future work should investigate this concept of decreasing potentiation. 
+Since we limited our analyses to runs where associative learning arose in the original replicate, we did not expect a preponderance of anti-potentiating mutations, but were intrigued to see evidence of them, even if at low effect.  
+%However, these mutations could exist. 
+These same analytic replay experiments could be applied to lineages that failed to evolve the focal behavior, to see if potentiation of that behavior experiences sudden drops. 
+Similarly, our replays targeted windows with substantial increases in potentiation; other windows would be more likely to include decreases. 
+Finally, failed replays from starting points with otherwise high potentiation must have failed for a reason; they too could be used as a likely source (albeit more artificial) of anti-potentiating mutations.
+%Windows that see a large decrease in potentiation are more likely to contain anti-potentiating mutations, while windows of little or no potentiation change early in a lineage have the potential of an increase and subsequent decrease of potentiation within that window.
+%One hypothesis is that potentiation-decreasing mutations are beneficial when they occur, and that the instant gain in fitness comes at the detriment of long-term success of evolving the complex behavior. 
+
+%That said, in run BLAH we do see a period of steady decline in the probability of associate learning arising, though no individual mutations has a dramatic negative effect.  
+%If we were to focus our replay experiments more broadly, we expect that many of the runs that never produce associative learning may exhibit more signs of anti-potentiating mutations and we plan to investigate this further in the future.
+
+%\subsection{Potentiating mutations vary substantially from one evolutionary lineage to another}
+%[Step through the different runs and talk about how different the patterns are.  Can even look at some of the runs that got associative learning, but we didn't zoom in on yet.]
+
+
+
+\subsection{Potentiating mutations can appear innocuous when they first occur}
+
+%[Step through these mutations and discuss how they have different immediate effects and nothing immediately identifies them as potentiating.  End with the question of "so, how are these mutations any different from other mutations?"  To have any chance of identifying potentiating mutations ahead of time, we must first further understand the underlying mechanisms that make them potentiating.]
+We analyzed the mutational step in each of the four lineages that conferred the greatest increase in potentiation.
+Of those four mutational events, two were neutral, one was deleterious, and one was beneficial. 
+Even among these few replicates, there is no obvious pattern in the properties of potentiating mutations. 
+Of the two neutral mutations, one made an instruction redundant while the other added a conditional instruction that had no effect when it was initially introduced. 
+The deleterious and beneficial mutations both caused the execution flow to loop back earlier than it did before.
+Additionally, the number of mutations between the potentiating mutation and the appearance of learning varied wildly between lineages, ranging from 8 steps up to 91.
+The potentiating mutations in these four lineages are unique, and at the current time there is no pattern emerging among them.
+So, how are these mutations any different from other mutations?
+Untangling this mystery could be critical for predicting evolutionary outcomes or accelerating adaptive evolution.
+
+
+% \subsection{What makes a mutation potentiating?}
+\subsection{We can identify \textit{how} a mutation is potentiating}
+
+There are many mechanisms by which a mutation could facilitate the evolution of associative learning.
+For example, the mutation could provide a building block that is helpful to perform the task.  
+But for a mutation to be potentiating it must notably increase the probability of associative learning appearing in the future.
+Any change, no matter how helpful, that was already likely to occur would not be considered potentiating.
+Indeed, it is the earlier mutations that made that change so likely that would be potentiating.
+Of course, those mutations are also more challenging to identify.
+%Here we define a potentiating mutation as one that increases the probability of associative learning eventually appearing by at least 0.25. (or 25 percentage points).
+
+We have three different hypotheses for how a mutation could be potentiating:
+% \begin{enumerate}
+%     \item The mutation grants access to associative learning in the local fitness landscape (one or two mutations away)
+%     \item Associative learning was available in the local landscape, but not beneficial; the mutation makes it valuable and drives evolution toward it.
+%     \item The mutation is a ``gateway'' to another region of the fitness landscape.  It does not provide immediate access to associative learning, but it does grant access to a pathway to get there.
+% \end{enumerate}
+%(1) It moves through genetic space in a useful direction, providing access to associative learning in the local fitness landscape. % (one or two mutations away)
+(1) It is the initial move into a genetic neighborhood with associative learning,
+%(2) It improves the eventual value of associative learning, increasing the likelihood of the trait being selected if it does appear. % was available in the local landscape, but not beneficial; the mutation makes it valuable and drives evolution toward it.
+%(2) It shifts toward the genetic neighborhoods of better versions of learning, improving potential fitness benefits.
+(2) It is a shift into a genetic neighborhood with a more valuable version of learning, or
+%(3) It is a ``gateway'' mutation to another region of the fitness landscape that does not grant immediate access to associative learning, but does unlock a pathway to get there.
+%(3) It is a more general ``gateway'' mutation to another region of the fitness landscape, unlocking a pathway to learning that is undetectable using local neighborhood analyses.
+(3) It is a ``gateway'' mutation that unlocks a beneficial pathway to learning, even though learning is not in the immediate genetic neighborhood.
+
+Across the potentiating mutations we analyzed, we have found evidence for each of these hypotheses.
+The largest potentiating mutation in Lineage D supports Hypothesis 1, as it is the first time in the lineage that learning is only one mutation away. 
+The main potentiating mutation in Lineage A and the earlier potentiation mutations in Lineage D support Hypothesis 2 as both cause drastic increases in the fitness benefit of learning mutations in the two-step neighborhood. 
+%It is worth noting that the mutation in Lineage A still only has a few two-step mutations with learning, while the mutation in Lineage D has many. 
+Finally, Lineages B, C and the early potentiating mutation from Lineage A all provide support for Hypothesis 3. 
+The mutations from Lineages A and B both have \textit{zero} learning mutations in their two-step neighborhoods. 
+Interestingly, Lineage C sees a \textit{decrease} in the number and fitness of learning mutations in the local neighborhood. %and in the fitness of those learning mutations. 
+
+Hypothesis 3 has many possible mechanisms by which it may work.  
+For example, new traits may produce a single, clear, beneficial pathway of improvements to follow.  
+Alternatively, a new building block may open a larger region with many different ways of evolving associative learning.
+Finally, the mutation may actually damage existing functionality or remove existing interactions that were impeding further evolution.
+While all three hypotheses have some support, future work can begin to uncover if a certain hypothesis is seen more often, what conditions might result in each scenario, or if additional analyses are needed to truly characterize these potentiating mutations. 
+
+% Seed 86 - Hyp 2 - Increases number of two-step learning muts from 2 to 9, as well as a increase in fitness of 3 or 4 orders of magnitude
+    % Seed 86 (earlier mutation) - Hyp 3 - No learning in local landscape
+% Seed 4 - Hyp 3 - No learning in local landscape
+% Seed 6 - Hyp 1 - Increase in the number of learning genotypes in the local neighborhood
+    % Seed 6 (earlier mutations) - Hyp 2 - greatly increases the fitness benefit of learning (and maybe slightly increases the number of two-step mutations that have it)
+% Seed 15 - Hyp 3 - Reduces number of learning genotypes, so not Hyp 1 or 2
+
+\subsection{Outlook}
+This work is only an early step, focused on developing techniques and expectations for performing fine-grained analyses of replay experiments. 
+Next, we must expand beyond four lineages, to collect broader, more systematic replay data, automating as much of the process as possible.
+%Naturally, looking at only four lineages has serious limitations, and conducting a study with enough data to aggregate the characteristics of potentiating mutations would be incredibly informative. 
+We conducted this study on associative learning in Avida, but the underlying techniques must be examined broadly in other environments and substrates to ensure that our results are not unique to Avida or the evolution of associative learning. %to the specific task, so experiments that collect evidence more broadly are critical. 
+Within the current study system, there are many questions that remain unanswered: 
+We focused on large \textit{increases} in potentiation, but are there more obvious signals associated with \textit{decreases}?
+How much of the noise that we see in our data is due to limiting ourselves to 50 replicates, and how much of it is do to actual shifts in potentiation with each mutation? % Are there signals we are missing due to noise?
+What does potentiation look like in replicates that fail to evolve learning? %, or what does the potentiation of other behaviors look like in learning lineages?
+%Additionally, we did not collect phylogenetic data on the replay experiments to save computational resources. 
+Finally, it would be valuable to compare the specific evolutionary pathways the different replays take. Do they follow the same trend or do they differ?  This would allow us to understand if, for example, a potentiating mutation funnels evolution in a fixed direction.
+
+Ultimately, these analytic replay techniques provide us with a tool for examining evolution in a prospective fashion, not just the retrospective approach that we are traditionally limited to.
+They will allow for the development of new evolutionary theory and predictive capacity that will be invaluable, both for understanding how meaningful complexity is produced in the natural world and for improving evolutionary applications. 
+        % Do this analysis, but at a scale that we can get aggregate data
+        % Different substrates
+        % Different tasks
+        % Why only look at large _increases_ in potentiation? What's going on with the _decreases_?
+        % What's going on with the lineages that _don't_ evolve learning?
+        % Is sampling 50 replicates enough? 
+            % Are we missing interesting trends?
+            % Are we reading too much into noise?
+        % We could also track phylogenies on the replays
+            % How closely do replay lineages match to the original lineage?
